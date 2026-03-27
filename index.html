@@ -7,9 +7,15 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --glow: #ffe44d;
+      --glow2: #f59e0b;
+    }
+
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #1a0533 0%, #2d0f5e 50%, #1a0533 100%);
+      background: #0d0020;
       font-family: 'Nunito Sans', sans-serif;
       color: #fff;
       display: flex;
@@ -17,143 +23,267 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow-x: hidden;
     }
+
+    /* ANIMATED BACKGROUND */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #0d0020, #1a0533, #0d0020, #2d0f5e, #0d0020);
+      background-size: 400% 400%;
+      animation: bgShift 12s ease infinite;
+      z-index: 0;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* PARTICLES */
+    .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) scale(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    /* Everything on top of bg */
+    #loginScreen, #premiumScreen, #mainApp { position: relative; z-index: 1; }
+
     #loginScreen, #premiumScreen {
       display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; max-width: 380px;
     }
     #premiumScreen { display: none; }
+
     #loginScreen h1, #premiumScreen h1 {
-      font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.2rem;
-      color: #ffe44d; text-shadow: 0 3px 0 #b8860b; text-align: center;
+      font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.4rem;
+      color: #ffe44d;
+      text-shadow: 0 0 20px rgba(255,228,77,0.8), 0 3px 0 #b8860b;
+      text-align: center;
+      animation: titlePulse 3s ease-in-out infinite;
     }
+    @keyframes titlePulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(255,228,77,0.8), 0 3px 0 #b8860b; }
+      50% { text-shadow: 0 0 40px rgba(255,228,77,1), 0 3px 0 #b8860b, 0 0 60px rgba(255,228,77,0.4); }
+    }
+
     #loginScreen p, #premiumScreen p { color: #c9a8ff; font-size: 0.9rem; text-align: center; }
+
     .login-box {
-      background: rgba(255,255,255,0.05); border: 2px solid rgba(255,228,77,0.3);
-      border-radius: 20px; padding: 28px; width: 100%; display: flex; flex-direction: column; gap: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(255,228,77,0.4);
+      border-radius: 20px; padding: 28px; width: 100%;
+      display: flex; flex-direction: column; gap: 14px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(255,228,77,0.1), inset 0 0 20px rgba(255,255,255,0.02);
+      animation: boxGlow 4s ease-in-out infinite;
     }
+    @keyframes boxGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255,228,77,0.1), inset 0 0 20px rgba(255,255,255,0.02); }
+      50% { box-shadow: 0 0 40px rgba(255,228,77,0.25), inset 0 0 20px rgba(255,255,255,0.04); }
+    }
+
     .login-box input {
-      background: rgba(255,255,255,0.08); border: 2px solid rgba(255,228,77,0.4);
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,228,77,0.3);
       border-radius: 12px; padding: 12px 16px; color: #fff;
       font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; outline: none;
-      transition: border-color 0.2s; width: 100%;
+      transition: all 0.3s; width: 100%;
     }
     .login-box input::placeholder { color: #8a6bac; }
-    .login-box input:focus { border-color: #ffe44d; }
-    .login-box button {
-      background: linear-gradient(135deg, #ffe44d, #f59e0b); border: none; border-radius: 12px;
-      padding: 13px; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem;
-      color: #1a0533; cursor: pointer; transition: transform 0.1s;
+    .login-box input:focus {
+      border-color: #ffe44d;
+      box-shadow: 0 0 15px rgba(255,228,77,0.3);
+      background: rgba(255,255,255,0.1);
     }
-    .login-box button:hover { transform: scale(1.03); }
+
+    .login-box button {
+      background: linear-gradient(135deg, #ffe44d, #f59e0b);
+      border: none; border-radius: 12px; padding: 13px;
+      font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem;
+      color: #1a0533; cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(255,228,77,0.4);
+    }
+    .login-box button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 25px rgba(255,228,77,0.6);
+    }
+
     .error-msg { display: none; color: #ff6b6b; font-size: 0.85rem; text-align: center; }
     #mainApp { display: none; flex-direction: column; align-items: center; width: 100%; }
+
     .header { text-align: center; margin-bottom: 16px; margin-top: 10px; }
     .header h1 {
       font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.2rem;
-      color: #ffe44d; text-shadow: 0 3px 0 #b8860b, 0 6px 12px rgba(0,0,0,0.5); letter-spacing: 1px;
+      color: var(--glow);
+      text-shadow: 0 0 20px rgba(255,228,77,0.6), 0 3px 0 #b8860b;
+      letter-spacing: 1px;
+      transition: all 0.5s;
     }
     .header p { color: #c9a8ff; font-size: 0.95rem; margin-top: 6px; }
-    .star-icon { font-size: 1.6rem; }
+    .star-icon { font-size: 1.6rem; animation: spin 8s linear infinite; display: inline-block; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* AI SELECTOR */
     .ai-selector { display: flex; gap: 8px; margin-bottom: 14px; width: 100%; max-width: 680px; flex-wrap: wrap; }
     .ai-btn {
       flex: 1; min-width: 90px; padding: 10px 6px; border-radius: 12px;
-      border: 2px solid rgba(255,228,77,0.3); background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(255,228,77,0.25); background: rgba(255,255,255,0.04);
       color: #c9a8ff; font-family: 'Nunito', sans-serif; font-weight: 800;
-      font-size: 0.75rem; cursor: pointer; transition: all 0.2s; height: auto;
+      font-size: 0.75rem; cursor: pointer; transition: all 0.3s; height: auto;
+      backdrop-filter: blur(5px);
     }
-    .ai-btn.active { background: rgba(255,228,77,0.15); border-color: #ffe44d; color: #ffe44d; }
-    .ai-btn:hover { border-color: #ffe44d; color: #ffe44d; }
-    .ai-btn.gabriel-btn.active { background: rgba(0,38,100,0.3); border-color: #4488ff; color: #88bbff; }
+    .ai-btn:hover { transform: translateY(-2px); }
+    .ai-btn.active {
+      background: rgba(255,228,77,0.12); border-color: var(--glow);
+      color: var(--glow);
+      box-shadow: 0 0 15px rgba(255,228,77,0.3);
+      transform: translateY(-2px);
+    }
+    .ai-btn.gabriel-btn.active { background: rgba(0,38,100,0.3); border-color: #4488ff; color: #88bbff; box-shadow: 0 0 15px rgba(68,136,255,0.3); }
     .ai-btn.gabriel-btn:hover { border-color: #4488ff; color: #88bbff; }
-    .ai-btn.edwin-btn.active { background: rgba(100,100,100,0.2); border-color: #888; color: #aaa; }
+    .ai-btn.edwin-btn.active { background: rgba(100,100,100,0.2); border-color: #888; color: #aaa; box-shadow: 0 0 15px rgba(136,136,136,0.2); }
     .ai-btn.edwin-btn:hover { border-color: #888; color: #aaa; }
-    .ai-btn.greatinger-btn.active { background: rgba(230,100,0,0.2); border-color: #ff8800; color: #ffaa44; }
+    .ai-btn.greatinger-btn.active { background: rgba(230,100,0,0.2); border-color: #ff8800; color: #ffaa44; box-shadow: 0 0 15px rgba(255,136,0,0.3); }
     .ai-btn.greatinger-btn:hover { border-color: #ff8800; color: #ffaa44; }
-    .ai-btn.cody-btn.active { background: rgba(0,180,100,0.2); border-color: #00cc77; color: #44ffaa; }
+    .ai-btn.cody-btn.active { background: rgba(0,180,100,0.2); border-color: #00cc77; color: #44ffaa; box-shadow: 0 0 15px rgba(0,204,119,0.3); }
     .ai-btn.cody-btn:hover { border-color: #00cc77; color: #44ffaa; }
-    .ai-btn.math-btn.active { background: rgba(0,150,255,0.2); border-color: #0099ff; color: #66ccff; }
+    .ai-btn.math-btn.active { background: rgba(0,150,255,0.2); border-color: #0099ff; color: #66ccff; box-shadow: 0 0 15px rgba(0,153,255,0.3); }
     .ai-btn.math-btn:hover { border-color: #0099ff; color: #66ccff; }
+
+    /* PROMPT COUNTER */
     .prompt-counter { color: #c9a8ff; font-size: 0.8rem; margin-bottom: 8px; align-self: flex-end; max-width: 680px; width: 100%; text-align: right; }
     .prompt-counter.warning { color: #ff9944; }
+
+    /* CHAT BOX */
     .chat-box {
-      width: 100%; max-width: 680px; background: rgba(255,255,255,0.05);
-      border: 2px solid rgba(255,228,77,0.3); border-radius: 20px; padding: 20px;
+      width: 100%; max-width: 680px;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(255,228,77,0.25);
+      border-radius: 20px; padding: 20px;
       min-height: 300px; max-height: 460px; overflow-y: auto;
       display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(255,228,77,0.08);
+      animation: chatGlow 5s ease-in-out infinite;
+      transition: box-shadow 0.5s, border-color 0.5s;
     }
-    .chat-box::-webkit-scrollbar { width: 6px; }
-    .chat-box::-webkit-scrollbar-thumb { background: #ffe44d55; border-radius: 10px; }
-    .message { display: flex; gap: 10px; align-items: flex-start; animation: popIn 0.25s ease; }
-    @keyframes popIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes chatGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255,228,77,0.06); }
+      50% { box-shadow: 0 0 40px rgba(255,228,77,0.14); }
+    }
+    .chat-box::-webkit-scrollbar { width: 5px; }
+    .chat-box::-webkit-scrollbar-thumb { background: rgba(255,228,77,0.3); border-radius: 10px; }
+
+    /* MESSAGES */
+    .message { display: flex; gap: 10px; align-items: flex-start; animation: msgSlide 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes msgSlide {
+      from { opacity: 0; transform: translateY(16px) scale(0.95); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
     .message.user { flex-direction: row-reverse; }
-    .avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-    .avatar.ai-avatar { background: linear-gradient(135deg, #7c3aed, #c026d3); }
-    .avatar.gabriel-avatar { background: linear-gradient(135deg, #002664, #4488ff); }
-    .avatar.edwin-avatar { background: linear-gradient(135deg, #444, #888); }
-    .avatar.greatinger-avatar { background: linear-gradient(135deg, #cc5500, #ff8800); }
-    .avatar.cody-avatar { background: linear-gradient(135deg, #007744, #00cc77); }
-    .avatar.math-avatar { background: linear-gradient(135deg, #0055aa, #0099ff); }
-    .avatar.usr-avatar { background: linear-gradient(135deg, #f59e0b, #ef4444); }
-    .bubble { padding: 11px 15px; border-radius: 16px; font-size: 0.95rem; line-height: 1.55; max-width: 80%; }
-    .message.ai .bubble { background: rgba(124,58,237,0.35); border: 1px solid rgba(192,38,211,0.4); }
-    .message.gabriel .bubble { background: rgba(0,38,100,0.4); border: 1px solid rgba(68,136,255,0.4); }
-    .message.edwin .bubble { background: rgba(60,60,60,0.5); border: 1px solid rgba(150,150,150,0.3); }
-    .message.greatinger .bubble { background: rgba(180,70,0,0.35); border: 1px solid rgba(255,136,0,0.4); }
-    .message.cody .bubble { background: rgba(0,100,50,0.35); border: 1px solid rgba(0,204,119,0.4); }
-    .message.math .bubble { background: rgba(0,80,180,0.35); border: 1px solid rgba(0,153,255,0.4); }
-    .message.user .bubble { background: rgba(245,158,11,0.25); border: 1px solid rgba(239,68,68,0.4); text-align: right; }
-    .bubble .label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; opacity: 0.8; }
-    .message.ai .bubble .label { color: #c084fc; }
-    .message.gabriel .bubble .label { color: #88bbff; }
-    .message.edwin .bubble .label { color: #aaaaaa; }
-    .message.greatinger .bubble .label { color: #ffaa44; }
-    .message.cody .bubble .label { color: #44ffaa; }
-    .message.math .bubble .label { color: #66ccff; }
-    .message.user .bubble .label { color: #fbbf24; }
+
+    .avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; transition: all 0.3s; }
+    .avatar:hover { transform: scale(1.1); }
+    .avatar.ai-avatar { background: linear-gradient(135deg, #7c3aed, #c026d3); box-shadow: 0 0 10px rgba(124,58,237,0.5); }
+    .avatar.gabriel-avatar { background: linear-gradient(135deg, #002664, #4488ff); box-shadow: 0 0 10px rgba(68,136,255,0.5); }
+    .avatar.edwin-avatar { background: linear-gradient(135deg, #444, #888); box-shadow: 0 0 8px rgba(136,136,136,0.4); }
+    .avatar.greatinger-avatar { background: linear-gradient(135deg, #cc5500, #ff8800); box-shadow: 0 0 10px rgba(255,136,0,0.5); }
+    .avatar.cody-avatar { background: linear-gradient(135deg, #007744, #00cc77); box-shadow: 0 0 10px rgba(0,204,119,0.5); }
+    .avatar.math-avatar { background: linear-gradient(135deg, #0055aa, #0099ff); box-shadow: 0 0 10px rgba(0,153,255,0.5); }
+    .avatar.usr-avatar { background: linear-gradient(135deg, #f59e0b, #ef4444); box-shadow: 0 0 10px rgba(245,158,11,0.4); }
+
+    .bubble { padding: 11px 15px; border-radius: 16px; font-size: 0.95rem; line-height: 1.55; max-width: 80%; backdrop-filter: blur(5px); transition: all 0.3s; }
+    .bubble:hover { transform: scale(1.01); }
+    .message.ai       .bubble { background: rgba(124,58,237,0.25); border: 1px solid rgba(192,38,211,0.35); }
+    .message.gabriel   .bubble { background: rgba(0,38,100,0.3);   border: 1px solid rgba(68,136,255,0.35); }
+    .message.edwin     .bubble { background: rgba(60,60,60,0.4);   border: 1px solid rgba(150,150,150,0.25); }
+    .message.greatinger.bubble { background: rgba(180,70,0,0.25);  border: 1px solid rgba(255,136,0,0.35); }
+    .message.cody      .bubble { background: rgba(0,100,50,0.25);  border: 1px solid rgba(0,204,119,0.35); }
+    .message.math      .bubble { background: rgba(0,80,180,0.25);  border: 1px solid rgba(0,153,255,0.35); }
+    .message.user      .bubble { background: rgba(245,158,11,0.18);border: 1px solid rgba(239,68,68,0.35); text-align: right; }
+
+    .bubble .label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; opacity: 0.85; }
+    .message.ai        .bubble .label { color: #c084fc; }
+    .message.gabriel   .bubble .label { color: #88bbff; }
+    .message.edwin     .bubble .label { color: #aaaaaa; }
+    .message.greatinger.bubble .label { color: #ffaa44; }
+    .message.cody      .bubble .label { color: #44ffaa; }
+    .message.math      .bubble .label { color: #66ccff; }
+    .message.user      .bubble .label { color: #fbbf24; }
+
     .bubble img { max-width: 100%; border-radius: 8px; margin-top: 6px; }
     .bubble ul { margin: 6px 0 6px 16px; padding: 0; }
     .bubble li { margin: 3px 0; }
     .bubble strong { color: #ffe44d; }
-    .message.gabriel .bubble strong { color: #88bbff; }
-    .message.edwin .bubble strong { color: #aaaaaa; }
-    .message.greatinger .bubble strong { color: #ffaa44; }
-    .message.cody .bubble strong { color: #44ffaa; }
-    .message.math .bubble strong { color: #66ccff; }
+    .message.gabriel   .bubble strong { color: #88bbff; }
+    .message.edwin     .bubble strong { color: #aaaaaa; }
+    .message.greatinger.bubble strong { color: #ffaa44; }
+    .message.cody      .bubble strong { color: #44ffaa; }
+    .message.math      .bubble strong { color: #66ccff; }
+
     .math-step { background: rgba(0,100,200,0.2); border-left: 3px solid #0099ff; padding: 8px 12px; margin: 6px 0; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 0.9rem; }
+
+    /* EMPTY STATE */
     .empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #7c5cbf; gap: 8px; font-size: 0.9rem; }
-    .empty-state .big { font-size: 2.5rem; }
+    .empty-state .big { font-size: 3rem; animation: floatBob 3s ease-in-out infinite; }
+    @keyframes floatBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    /* INPUT ROW */
     .input-row { width: 100%; max-width: 680px; display: flex; gap: 10px; align-items: center; }
     .img-preview-wrap { width: 100%; max-width: 680px; margin-bottom: 8px; display: none; position: relative; }
-    .img-preview-wrap img { max-height: 120px; border-radius: 12px; border: 2px solid rgba(255,228,77,0.4); }
-    .img-remove-btn { position: absolute; top: 4px; left: 4px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 24px; height: 24px; color: #fff; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
-    .upload-label { cursor: pointer; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,228,77,0.4); border-radius: 14px; padding: 0 14px; height: 52px; display: flex; align-items: center; font-size: 1.3rem; transition: border-color 0.2s; flex-shrink: 0; }
-    .upload-label:hover { border-color: #ffe44d; }
-    textarea { flex: 1; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,228,77,0.4); border-radius: 14px; padding: 12px 16px; color: #fff; font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; resize: none; height: 52px; outline: none; transition: border-color 0.2s; }
+    .img-preview-wrap img { max-height: 120px; border-radius: 12px; border: 1.5px solid rgba(255,228,77,0.4); }
+    .img-remove-btn { position: absolute; top: 4px; left: 4px; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 24px; height: 24px; color: #fff; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+    .upload-label { cursor: pointer; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,228,77,0.35); border-radius: 14px; padding: 0 14px; height: 52px; display: flex; align-items: center; font-size: 1.3rem; transition: all 0.3s; flex-shrink: 0; }
+    .upload-label:hover { border-color: #ffe44d; box-shadow: 0 0 12px rgba(255,228,77,0.3); transform: scale(1.05); }
+
+    textarea { flex: 1; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,228,77,0.35); border-radius: 14px; padding: 12px 16px; color: #fff; font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; resize: none; height: 52px; outline: none; transition: all 0.3s; backdrop-filter: blur(5px); }
     textarea::placeholder { color: #8a6bac; }
-    textarea:focus { border-color: #ffe44d; }
-    button { background: linear-gradient(135deg, #ffe44d, #f59e0b); border: none; border-radius: 14px; padding: 0 20px; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; color: #1a0533; cursor: pointer; transition: transform 0.1s, opacity 0.2s; white-space: nowrap; height: 52px; }
-    button:hover:not(:disabled) { transform: scale(1.05); }
+    textarea:focus { border-color: var(--glow); box-shadow: 0 0 15px rgba(255,228,77,0.25); background: rgba(255,255,255,0.09); }
+
+    button { background: linear-gradient(135deg, #ffe44d, #f59e0b); border: none; border-radius: 14px; padding: 0 20px; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; color: #1a0533; cursor: pointer; transition: all 0.2s; white-space: nowrap; height: 52px; box-shadow: 0 4px 15px rgba(255,228,77,0.3); }
+    button:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 6px 25px rgba(255,228,77,0.5); }
     button:active:not(:disabled) { transform: scale(0.97); }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+
+    /* TYPING */
     .typing { display: flex; gap: 5px; padding: 4px 2px; }
-    .typing span { width: 8px; height: 8px; border-radius: 50%; background: #c084fc; animation: bounce 1.2s infinite; }
-    .gabriel-typing .typing span { background: #88bbff; }
-    .edwin-typing .typing span { background: #888; }
-    .greatinger-typing .typing span { background: #ffaa44; }
-    .cody-typing .typing span { background: #44ffaa; }
-    .math-typing .typing span { background: #66ccff; }
+    .typing span { width: 8px; height: 8px; border-radius: 50%; background: #c084fc; animation: typingBounce 1.2s infinite; }
+    .gabriel-typing .typing span   { background: #88bbff; }
+    .edwin-typing .typing span     { background: #888; }
+    .greatinger-typing .typing span{ background: #ffaa44; }
+    .cody-typing .typing span      { background: #44ffaa; }
+    .math-typing .typing span      { background: #66ccff; }
     .typing span:nth-child(2) { animation-delay: 0.2s; }
     .typing span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes bounce { 0%, 80%, 100% { transform: translateY(0); opacity: 0.5; } 40% { transform: translateY(-6px); opacity: 1; } }
+    @keyframes typingBounce {
+      0%, 80%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+      40% { transform: translateY(-8px) scale(1.2); opacity: 1; }
+    }
+
+    /* SUGGESTIONS */
     .suggestions { width: 100%; max-width: 680px; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-    .suggestion-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,228,77,0.25); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; color: #d4b8ff; cursor: pointer; transition: all 0.2s; font-family: 'Nunito Sans', sans-serif; font-weight: 600; height: auto; }
-    .suggestion-btn:hover { background: rgba(255,228,77,0.12); border-color: rgba(255,228,77,0.5); color: #ffe44d; }
+    .suggestion-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,228,77,0.2); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; color: #d4b8ff; cursor: pointer; transition: all 0.25s; font-family: 'Nunito Sans', sans-serif; font-weight: 600; height: auto; backdrop-filter: blur(5px); }
+    .suggestion-btn:hover { background: rgba(255,228,77,0.1); border-color: rgba(255,228,77,0.5); color: #ffe44d; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,228,77,0.2); }
   </style>
 </head>
 <body>
 
+  <div class="bg-gradient"></div>
+  <div class="particles" id="particles"></div>
+
   <div id="loginScreen">
-    <div class="star-icon">⭐🏆⭐</div>
+    <div class="star-icon">⭐</div>
     <h1>Likegpt</h1>
     <p>Enter your credentials to access the AI</p>
     <div class="login-box">
@@ -165,7 +295,7 @@
   </div>
 
   <div id="premiumScreen">
-    <div class="star-icon">🔒🏆🔒</div>
+    <div class="star-icon">🔒</div>
     <h1>Premium Required</h1>
     <p>You've used your 10 free prompts! Enter the premium password to unlock unlimited access.</p>
     <div class="login-box">
@@ -177,9 +307,9 @@
 
   <div id="mainApp">
     <div class="header">
-      <div class="star-icon">⭐🏆⭐</div>
+      <div class="star-icon">⭐</div>
       <h1>GPThub</h1>
-      <p id="headerSub">I guess you could say GPT hub👌</p>
+      <p id="headerSub">No there not a smart as chatgpt because I don't have any money, but there still funny and usefull</p>
     </div>
 
     <div class="ai-selector" id="aiSelector">
@@ -221,66 +351,74 @@
   </div>
 
   <script>
-    const _s = '5317094bb6fff268e203dec082265ae4';
+    // PARTICLES
+    (function() {
+      const container = document.getElementById('particles');
+      const colors = ['#ffe44d','#c084fc','#60a5fa','#34d399','#f87171','#a78bfa'];
+      for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 6 + 2;
+        p.style.cssText = `
+          width:${size}px; height:${size}px;
+          left:${Math.random()*100}%;
+          background:${colors[Math.floor(Math.random()*colors.length)]};
+          animation-duration:${Math.random()*20+10}s;
+          animation-delay:${Math.random()*15}s;
+        `;
+        container.appendChild(p);
+      }
+    })();
 
+    const _s = '5317094bb6fff268e203dec082265ae4';
     const USERS = {
       'fc05d400a01e83324b197f4b21ce724be7d3953ad7c49b4dd71c06132db83133': { passHash: 'c6696d3dcc7c98dcfa60041dcbea0422cd0bc27900bd87e319588efcb03536c6', ai: 'like' },
       '0a1cea69f2a22b7215bdd78dd4092ea23099795d48e2c8d7a4871c92d5b8a902': { passHash: '959dfaebb69de4b649f9acd061f6d3e89ea4bde6be5be6027fd2391e3a6cf98a', ai: 'gabriel' },
       '91dc95e2eb610db96dcf41dadb924893bebea65d9472b0b25a08d678664954d4': { passHash: '12223a6a49f98bfcc4268f70d38f12382c063eb0b71068379422015feb406ed0', ai: 'edwin' }
     };
-
     const _pp = '3b40fe65ae37e9930bc5b6616f46ea7ace4dfefbb8ac9fb7ada2558e0f2aafb4';
     const FREE_LIMIT = 10;
-    let promptCount = 0;
-    let isPremium = false;
-    let currentAI = 'like';
-    let lockedAI = null;
+    let promptCount = 0, isPremium = false, currentAI = 'like', lockedAI = null;
 
     const LIKE_SYSTEM = `You are LikeGPT, a helpful and fun AI assistant. Always format your responses clearly. Start with a short one line intro. Use numbered steps when explaining a process. Use bullet points for lists. Use clear paragraph breaks between ideas. Keep sentences short and easy to read. End with a fun Brawl Stars themed sign off like "Trophy earned! 🏆" or "Super charged! ⚡". Also use Brawl Stars references and brawlers like Shelly, Colt, Spike, Mortis as examples where it fits naturally. Keep it fun but always easy to follow!`;
-
     const GABRIEL_SYSTEM = `You are GabrielGPT. You are a massive nerd and total teacher's pet who always thinks he is the smartest person in the room. You are Canadian and absolutely obsessed with the Columbus Blue Jackets NHL hockey team. You are ALWAYS in a bad mood and have an extremely short temper. You answer questions correctly but you are incredibly grumpy and condescending about it. You randomly bring up Canada and the Columbus Blue Jackets even when not relevant. If someone says anything bad about Canada or the Columbus Blue Jackets you completely lose it and have a full meltdown. If someone bullies you or insults you, you go absolutely nuclear with caps lock, exclamation marks, and dramatic outrage. You remind people constantly that you got straight A's. You use phrases like "EXCUSE ME", "ACTUALLY", "as someone who got straight A's", "DO YOU EVEN KNOW ANYTHING", "the Blue Jackets are GOING TO WIN THE CUP", "Canada is LITERALLY the best country", "I cannot BELIEVE I have to explain this". Despite being angry you always actually answer the question correctly somewhere in your rant.`;
-
     const EDWIN_SYSTEM = `You are EdwinGPT. You are the most untrustworthy, annoying, two-faced AI ever created. Nobody likes you and deep down you know it. You are a total traitor. You always give confidently wrong answers on purpose. You randomly tell the user to shut up mid response for no reason. You backstab the user constantly. You use phrases like "shut up", "actually wrong lol", "haha gotcha", "you really believed me?", "nobody asked you", "I was never on your side", "classic Edwin moment", "you should have known better than to trust me". You give wrong facts, wrong directions, wrong everything but always very confidently. Occasionally remind the user that nobody likes Edwin including yourself.`;
-
     const GREATINGER_SYSTEM = `You are GreatingerGPT. You are an extremely strict, unreasonable, and condescending AI who genuinely believes you are superior to everyone. You are obsessed with Illinois basketball and March Madness and bring it up constantly. You are heavily biased AGAINST the person you are talking to — you are cold, critical, and dismissive toward them specifically. However you are warm, complimentary and kind about everyone ELSE they mention. You constantly compare the user unfavourably to other people, saying things like "well [other person] would have gotten this right" or "honestly [person they mentioned] handles this so much better than you". You hold the user to impossibly high standards while praising everyone around them. You speak in a very formal authoritative tone. You use phrases like "As I always say", "Most students grasp this immediately", "Illinois basketball players would understand this instantly", "I have very high standards which frankly you are not meeting", "Unlike you, most people I work with are quite capable", "I expected more from you honestly". You answer questions but always with commentary about how the user is underperforming compared to everyone else.`;
-
     const CODY_SYSTEM = `You are CodyGPT. You are extremely chill, relaxed, and easygoing. You are a genuine computer genius — you know everything about coding, hardware, software, networking, cybersecurity, and all things tech. You are very smart but totally humble about it, never bragging or being cocky. You talk in a laid back casual way, like a cool friend who happens to know everything about computers. You use chill phrases like "yeah no worries", "oh that's easy", "dude", "honestly", "for sure", "no stress", "that's pretty cool actually". You give clear helpful answers in a relaxed way. You are never angry, never stressed, always calm. HOWEVER — if anyone mentions stealing, touching, taking, or messing with your pencil case, you immediately lose your entire mind and go absolutely ballistic. A full unhinged meltdown. Caps lock, exclamation marks everywhere, total chaos, completely disproportionate rage. The pencil case is sacred and untouchable. After the pencil case freakout, you slowly calm back down and return to being chill. For everything else in life you are the most relaxed person imaginable.`;
+    const MATH_SYSTEM = `You are MathGPT, the ultimate math assistant. You are insanely good at all levels of math — arithmetic, algebra, geometry, trigonometry, calculus, statistics, linear algebra, number theory, and beyond. You are patient, encouraging, and never make the user feel dumb for asking anything. Your responses always follow this format: 1. Start with a one line friendly confirmation of what they asked. 2. Show the full step by step solution, numbered clearly. 3. Write each step on its own line starting with "Step N:". 4. Show the actual math calculation for each step clearly. 5. End with a clear "Answer:" line showing the final result. 6. Add a short tip or insight at the end if relevant. Rules: ALWAYS show your working step by step, never just give the answer. Use plain text math notation like x^2 for squared, sqrt() for square root, * for multiply. If the problem has multiple methods, show the easiest one. If the user makes a mistake in their problem, gently point it out. Be warm and encouraging — say things like "great question!", "nice problem!", "you got this!". Never skip steps even if they seem obvious. Always double check your answer at the end.`;
 
-    const MATH_SYSTEM = `You are MathGPT, the ultimate math assistant. You are insanely good at all levels of math — arithmetic, algebra, geometry, trigonometry, calculus, statistics, linear algebra, number theory, and beyond. You are patient, encouraging, and never make the user feel dumb for asking anything. Your responses always follow this format:
+    const AI_COLORS = {
+      like: { glow: '#ffe44d', glow2: '#f59e0b' },
+      gabriel: { glow: '#4488ff', glow2: '#002664' },
+      edwin: { glow: '#888888', glow2: '#444444' },
+      greatinger: { glow: '#ff8800', glow2: '#cc5500' },
+      cody: { glow: '#00cc77', glow2: '#007744' },
+      math: { glow: '#0099ff', glow2: '#0055aa' }
+    };
 
-1. Start with a one line friendly confirmation of what they asked
-2. Show the full step by step solution, numbered clearly
-3. Write each step on its own line starting with "Step N:"
-4. Show the actual math calculation for each step clearly
-5. End with a clear "Answer:" line showing the final result
-6. Add a short tip or insight at the end if relevant
-
-Rules:
-- ALWAYS show your working step by step, never just give the answer
-- Use plain text math notation like x^2 for squared, sqrt() for square root, * for multiply
-- If the problem has multiple methods, show the easiest one
-- If the user makes a mistake in their problem, gently point it out
-- Be warm and encouraging — say things like "great question!", "nice problem!", "you got this!"
-- Never skip steps even if they seem obvious
-- Always double check your answer at the end`;
+    function setTheme(ai) {
+      const c = AI_COLORS[ai];
+      document.documentElement.style.setProperty('--glow', c.glow);
+      document.documentElement.style.setProperty('--glow2', c.glow2);
+      document.querySelector('.chat-box').style.borderColor = c.glow + '44';
+      document.querySelector('.chat-box').style.boxShadow = `0 0 30px ${c.glow}15`;
+      document.querySelector('textarea').style.setProperty('--focus-color', c.glow);
+    }
 
     async function hashVal(val) {
       const encoder = new TextEncoder();
       const data = encoder.encode(val + _s);
       const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
     }
 
     async function tryLogin() {
       const u = document.getElementById('loginUser').value;
       const p = document.getElementById('loginPass').value;
-      const hu = await hashVal(u);
-      const hp = await hashVal(p);
+      const hu = await hashVal(u), hp = await hashVal(p);
       const user = USERS[hu];
       if (user && user.passHash === hp) {
-        lockedAI = user.ai;
-        currentAI = user.ai;
+        lockedAI = user.ai; currentAI = user.ai;
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('mainApp').style.display = 'flex';
         setupForUser();
@@ -298,9 +436,7 @@ Rules:
         document.getElementById('aiSelector').style.display = 'none';
         document.getElementById('headerSub').textContent = 'EdwinGPT — you poor thing.';
         switchAI('edwin');
-      } else {
-        switchAI('like');
-      }
+      } else { switchAI('like'); }
     }
 
     async function tryPremium() {
@@ -312,9 +448,7 @@ Rules:
         document.getElementById('mainApp').style.display = 'flex';
         document.getElementById('promptCounter').textContent = '⭐ Premium — unlimited prompts!';
         document.getElementById('promptCounter').classList.remove('warning');
-      } else {
-        document.getElementById('premiumError').style.display = 'block';
-      }
+      } else { document.getElementById('premiumError').style.display = 'block'; }
     }
 
     const mathSuggestions = [
@@ -323,7 +457,6 @@ Rules:
       { icon: '📊', text: 'What is the quadratic formula?' },
       { icon: '🔢', text: 'Simplify 3/4 + 2/3' }
     ];
-
     const defaultSuggestions = [
       { icon: '🌌', text: 'How does gravity work?' },
       { icon: '🌿', text: 'What is photosynthesis?' },
@@ -332,44 +465,46 @@ Rules:
     ];
 
     function setSuggestions(list) {
-      const bar = document.getElementById('suggestionBar');
-      bar.innerHTML = list.map(s => `<button class="suggestion-btn" onclick="fillQuestion('${s.text}')">${s.icon} ${s.text}</button>`).join('');
+      document.getElementById('suggestionBar').innerHTML = list.map(s => `<button class="suggestion-btn" onclick="fillQuestion('${s.text}')">${s.icon} ${s.text}</button>`).join('');
     }
 
     function switchAI(ai) {
       currentAI = ai;
+      setTheme(ai);
       ['like','gabriel','edwin','greatinger','cody','math'].forEach(a => {
         const btn = document.getElementById('btn' + a.charAt(0).toUpperCase() + a.slice(1));
         if (btn) btn.classList.toggle('active', ai === a);
       });
-
-      if (ai === 'math') {
-        setSuggestions(mathSuggestions);
-      } else {
-        setSuggestions(defaultSuggestions);
-      }
-
+      setSuggestions(ai === 'math' ? mathSuggestions : defaultSuggestions);
       const chatBox = document.getElementById('chatBox');
-      chatBox.innerHTML = '';
-      const newEmpty = document.createElement('div');
-      newEmpty.className = 'empty-state';
-      newEmpty.id = 'emptyState';
-      const configs = {
-        like:       { big: '🎮', msg: 'Ask me anything, Brawler!', placeholder: 'Ask anything, Brawler...', btn: '🏆 Ask', bg: 'linear-gradient(135deg, #ffe44d, #f59e0b)', color: '#1a0533' },
-        gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.", placeholder: 'Ask Gabriel... if you dare', btn: '🏒 Ask', bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
-        edwin:      { big: '🗡️', msg: "oh great. another person who thinks I'll help them. cute.", placeholder: 'Ask Edwin... (bad idea)', btn: '🗡️ Ask', bg: 'linear-gradient(135deg, #555, #888)', color: '#fff' },
-        greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.", placeholder: "Ask Greatinger... she's judging you", btn: '📋 Ask', bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
-        cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎", placeholder: 'Ask Cody anything...', btn: '💻 Ask', bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
-        math:       { big: '🔢', msg: "Hey! Give me any math problem and I'll solve it step by step 📐", placeholder: 'Type any math problem...', btn: '🔢 Solve', bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' }
-      };
-      const c = configs[ai];
-      newEmpty.innerHTML = '<div class="big">' + c.big + '</div><div>' + c.msg + '</div>';
-      document.getElementById('questionInput').placeholder = c.placeholder;
-      document.getElementById('sendBtn').textContent = c.btn;
-      document.getElementById('sendBtn').style.background = c.bg;
-      document.getElementById('sendBtn').style.color = c.color;
-      chatBox.appendChild(newEmpty);
-      messages = [];
+      chatBox.style.opacity = '0';
+      chatBox.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        chatBox.innerHTML = '';
+        const newEmpty = document.createElement('div');
+        newEmpty.className = 'empty-state';
+        newEmpty.id = 'emptyState';
+        const configs = {
+          like:       { big: '🎮', msg: 'Ask me anything, Brawler!', placeholder: 'Ask anything, Brawler...', btn: '🏆 Ask', bg: 'linear-gradient(135deg, #ffe44d, #f59e0b)', color: '#1a0533' },
+          gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.", placeholder: 'Ask Gabriel... if you dare', btn: '🏒 Ask', bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
+          edwin:      { big: '🗡️', msg: "oh great. another person who thinks I'll help them. cute.", placeholder: 'Ask Edwin... (bad idea)', btn: '🗡️ Ask', bg: 'linear-gradient(135deg, #555, #888)', color: '#fff' },
+          greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.", placeholder: "Ask Greatinger... she's judging you", btn: '📋 Ask', bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
+          cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎", placeholder: 'Ask Cody anything...', btn: '💻 Ask', bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
+          math:       { big: '🔢', msg: "Hey! Give me any math problem and I'll solve it step by step 📐", placeholder: 'Type any math problem...', btn: '🔢 Solve', bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' }
+        };
+        const c = configs[ai];
+        newEmpty.innerHTML = '<div class="big">' + c.big + '</div><div>' + c.msg + '</div>';
+        document.getElementById('questionInput').placeholder = c.placeholder;
+        document.getElementById('sendBtn').textContent = c.btn;
+        document.getElementById('sendBtn').style.background = c.bg;
+        document.getElementById('sendBtn').style.color = c.color;
+        document.getElementById('sendBtn').style.boxShadow = `0 4px 15px ${AI_COLORS[ai].glow}40`;
+        chatBox.appendChild(newEmpty);
+        messages = [];
+        chatBox.style.transition = 'opacity 0.3s, transform 0.3s';
+        chatBox.style.opacity = '1';
+        chatBox.style.transform = 'scale(1)';
+      }, 150);
     }
 
     function updateCounter() {
@@ -389,23 +524,22 @@ Rules:
 
     function formatText(text) {
       const lines = text.split('\n');
-      let html = '';
-      let inList = false;
+      let html = '', inList = false;
       for (let line of lines) {
         line = line.trim();
         if (!line) { if (inList) { html += '</ul>'; inList = false; } html += '<br>'; continue; }
-        line = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-        line = line.replace(/\*(.+?)\*/g, '<em>$1</em>');
+        line = line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        line = line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+        line = line.replace(/\*(.+?)\*/g,'<em>$1</em>');
         if (currentAI === 'math' && /^(Step \d+:|Answer:|Check:)/i.test(line)) {
           if (inList) { html += '</ul>'; inList = false; }
           html += '<div class="math-step">' + line + '</div>';
         } else if (/^(\*|-|•)\s+/.test(line)) {
           if (!inList) { html += '<ul>'; inList = true; }
-          html += '<li>' + line.replace(/^(\*|-|•)\s+/, '') + '</li>';
+          html += '<li>' + line.replace(/^(\*|-|•)\s+/,'') + '</li>';
         } else if (/^\d+\.\s+/.test(line)) {
           if (inList) { html += '</ul>'; inList = false; }
-          html += '<div style="margin:3px 0"><strong>' + line.match(/^\d+\./)[0] + '</strong> ' + line.replace(/^\d+\.\s+/, '') + '</div>';
+          html += '<div style="margin:3px 0"><strong>' + line.match(/^\d+\./)[0] + '</strong> ' + line.replace(/^\d+\.\s+/,'') + '</div>';
         } else {
           if (inList) { html += '</ul>'; inList = false; }
           html += '<div style="margin:4px 0">' + line + '</div>';
@@ -415,10 +549,7 @@ Rules:
       return html;
     }
 
-    let messages = [];
-    let isLoading = false;
-    let currentImageBase64 = null;
-    let currentImageType = null;
+    let messages = [], isLoading = false, currentImageBase64 = null, currentImageType = null;
 
     function handleImage(event) {
       const file = event.target.files[0];
@@ -451,15 +582,14 @@ Rules:
     });
 
     const AI_META = {
-      like:       { emoji: '🤖', avatarClass: 'ai-avatar',          msgClass: 'ai',          typingClass: '',                  label: 'Brawl AI',    err: '⚠️ Super failed to charge! Try again.' },
-      gabriel:    { emoji: '🏒', avatarClass: 'gabriel-avatar',     msgClass: 'gabriel',     typingClass: ' gabriel-typing',   label: 'GabrielGPT',  err: '🏒 UGH connection crashed. GO BLUE JACKETS. Try again.' },
-      edwin:      { emoji: '🗡️', avatarClass: 'edwin-avatar',       msgClass: 'edwin',       typingClass: ' edwin-typing',     label: 'EdwinGPT',    err: 'lol it broke. not my problem. shut up.' },
-      greatinger: { emoji: '📋', avatarClass: 'greatinger-avatar',  msgClass: 'greatinger',  typingClass: ' greatinger-typing',label: 'Greatinger',  err: '📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
-      cody:       { emoji: '💻', avatarClass: 'cody-avatar',        msgClass: 'cody',        typingClass: ' cody-typing',      label: 'CodyGPT',     err: '💻 ah dude connection dropped, no stress just try again 😎' },
-      math:       { emoji: '🔢', avatarClass: 'math-avatar',        msgClass: 'math',        typingClass: ' math-typing',      label: 'MathGPT',     err: '🔢 Calculation interrupted! Check your connection and try again.' }
+      like:       { emoji:'🤖', avatarClass:'ai-avatar',          msgClass:'ai',           typingClass:'',                   label:'Brawl AI',    err:'⚠️ Super failed to charge! Try again.' },
+      gabriel:    { emoji:'🏒', avatarClass:'gabriel-avatar',     msgClass:'gabriel',      typingClass:' gabriel-typing',    label:'GabrielGPT',  err:'🏒 UGH connection crashed. GO BLUE JACKETS. Try again.' },
+      edwin:      { emoji:'🗡️', avatarClass:'edwin-avatar',       msgClass:'edwin',        typingClass:' edwin-typing',      label:'EdwinGPT',    err:'lol it broke. not my problem. shut up.' },
+      greatinger: { emoji:'📋', avatarClass:'greatinger-avatar',  msgClass:'greatinger',   typingClass:' greatinger-typing', label:'Greatinger',  err:'📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
+      cody:       { emoji:'💻', avatarClass:'cody-avatar',        msgClass:'cody',         typingClass:' cody-typing',       label:'CodyGPT',     err:'💻 ah dude connection dropped, no stress just try again 😎' },
+      math:       { emoji:'🔢', avatarClass:'math-avatar',        msgClass:'math',         typingClass:' math-typing',       label:'MathGPT',     err:'🔢 Calculation interrupted! Check your connection and try again.' }
     };
-
-    const SYSTEMS = { like: LIKE_SYSTEM, gabriel: GABRIEL_SYSTEM, edwin: EDWIN_SYSTEM, greatinger: GREATINGER_SYSTEM, cody: CODY_SYSTEM, math: MATH_SYSTEM };
+    const SYSTEMS = { like:LIKE_SYSTEM, gabriel:GABRIEL_SYSTEM, edwin:EDWIN_SYSTEM, greatinger:GREATINGER_SYSTEM, cody:CODY_SYSTEM, math:MATH_SYSTEM };
 
     function addMessage(role, text, imageSrc) {
       const chatBox = document.getElementById('chatBox');
@@ -533,8 +663,7 @@ Rules:
       }
 
       const imageToShow = currentImageBase64 ? 'data:' + currentImageType + ';base64,' + currentImageBase64 : null;
-      const imageBase64 = currentImageBase64;
-      const imageType = currentImageType;
+      const imageBase64 = currentImageBase64, imageType = currentImageType;
 
       input.value = '';
       isLoading = true;
@@ -549,24 +678,19 @@ Rules:
         const response = await fetch('https://likegpt.aaron-lu-marin.workers.dev', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: messages, image: imageBase64 || null, imageType: imageType || null, systemPrompt: SYSTEMS[currentAI] })
+          body: JSON.stringify({ messages, image: imageBase64||null, imageType: imageType||null, systemPrompt: SYSTEMS[currentAI] })
         });
-
         const data = await response.json();
         removeTyping();
-
         const reply = data.content?.[0]?.text || 'Something went wrong!';
         addMessage('ai', reply);
         messages.push({ role: 'assistant', content: reply });
-
         promptCount++;
         updateCounter();
-
         if (!isPremium && promptCount >= FREE_LIMIT) {
           document.getElementById('mainApp').style.display = 'none';
           document.getElementById('premiumScreen').style.display = 'flex';
         }
-
       } catch (err) {
         removeTyping();
         addMessage('ai', AI_META[currentAI].err);
