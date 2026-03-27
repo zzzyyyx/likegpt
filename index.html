@@ -19,84 +19,64 @@
       padding: 20px;
     }
     #loginScreen, #premiumScreen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      width: 100%;
-      max-width: 380px;
+      display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; max-width: 380px;
     }
     #premiumScreen { display: none; }
     #loginScreen h1, #premiumScreen h1 {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 2.2rem;
-      color: #ffe44d;
-      text-shadow: 0 3px 0 #b8860b;
-      text-align: center;
+      font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.2rem;
+      color: #ffe44d; text-shadow: 0 3px 0 #b8860b; text-align: center;
     }
     #loginScreen p, #premiumScreen p { color: #c9a8ff; font-size: 0.9rem; text-align: center; }
     .login-box {
-      background: rgba(255,255,255,0.05);
-      border: 2px solid rgba(255,228,77,0.3);
-      border-radius: 20px;
-      padding: 28px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      background: rgba(255,255,255,0.05); border: 2px solid rgba(255,228,77,0.3);
+      border-radius: 20px; padding: 28px; width: 100%; display: flex; flex-direction: column; gap: 14px;
     }
     .login-box input {
-      background: rgba(255,255,255,0.08);
-      border: 2px solid rgba(255,228,77,0.4);
-      border-radius: 12px;
-      padding: 12px 16px;
-      color: #fff;
-      font-family: 'Nunito Sans', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
+      background: rgba(255,255,255,0.08); border: 2px solid rgba(255,228,77,0.4);
+      border-radius: 12px; padding: 12px 16px; color: #fff;
+      font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; outline: none;
+      transition: border-color 0.2s; width: 100%;
     }
     .login-box input::placeholder { color: #8a6bac; }
     .login-box input:focus { border-color: #ffe44d; }
     .login-box button {
-      background: linear-gradient(135deg, #ffe44d, #f59e0b);
-      border: none;
-      border-radius: 12px;
-      padding: 13px;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 1rem;
-      color: #1a0533;
-      cursor: pointer;
-      transition: transform 0.1s;
+      background: linear-gradient(135deg, #ffe44d, #f59e0b); border: none; border-radius: 12px;
+      padding: 13px; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem;
+      color: #1a0533; cursor: pointer; transition: transform 0.1s;
     }
     .login-box button:hover { transform: scale(1.03); }
     .error-msg { display: none; color: #ff6b6b; font-size: 0.85rem; text-align: center; }
     #mainApp { display: none; flex-direction: column; align-items: center; width: 100%; }
     .header { text-align: center; margin-bottom: 16px; margin-top: 10px; }
     .header h1 {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 2.2rem;
-      color: #ffe44d;
-      text-shadow: 0 3px 0 #b8860b, 0 6px 12px rgba(0,0,0,0.5);
-      letter-spacing: 1px;
+      font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.2rem;
+      color: #ffe44d; text-shadow: 0 3px 0 #b8860b, 0 6px 12px rgba(0,0,0,0.5); letter-spacing: 1px;
     }
     .header p { color: #c9a8ff; font-size: 0.95rem; margin-top: 6px; }
     .star-icon { font-size: 1.6rem; }
-    .ai-selector { display: flex; gap: 8px; margin-bottom: 14px; width: 100%; max-width: 680px; }
-    .ai-btn { flex: 1; padding: 10px 6px; border-radius: 12px; border: 2px solid rgba(255,228,77,0.3); background: rgba(255,255,255,0.05); color: #c9a8ff; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; height: auto; }
+    .ai-selector { display: flex; gap: 8px; margin-bottom: 14px; width: 100%; max-width: 680px; flex-wrap: wrap; }
+    .ai-btn {
+      flex: 1; min-width: 120px; padding: 10px 6px; border-radius: 12px;
+      border: 2px solid rgba(255,228,77,0.3); background: rgba(255,255,255,0.05);
+      color: #c9a8ff; font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: 0.82rem; cursor: pointer; transition: all 0.2s; height: auto;
+    }
     .ai-btn.active { background: rgba(255,228,77,0.15); border-color: #ffe44d; color: #ffe44d; }
     .ai-btn:hover { border-color: #ffe44d; color: #ffe44d; }
+    .ai-btn.gabriel-btn.active { background: rgba(0,38,100,0.3); border-color: #4488ff; color: #88bbff; }
+    .ai-btn.gabriel-btn:hover { border-color: #4488ff; color: #88bbff; }
     .ai-btn.edwin-btn.active { background: rgba(100,100,100,0.2); border-color: #888; color: #aaa; }
     .ai-btn.edwin-btn:hover { border-color: #888; color: #aaa; }
-    .ai-btn.gabriel-btn.active { background: rgba(180,0,0,0.2); border-color: #ff4444; color: #ff8080; }
-    .ai-btn.gabriel-btn:hover { border-color: #ff4444; color: #ff8080; }
+    .ai-btn.greatinger-btn.active { background: rgba(230,100,0,0.2); border-color: #ff8800; color: #ffaa44; }
+    .ai-btn.greatinger-btn:hover { border-color: #ff8800; color: #ffaa44; }
     .prompt-counter { color: #c9a8ff; font-size: 0.8rem; margin-bottom: 8px; align-self: flex-end; max-width: 680px; width: 100%; text-align: right; }
     .prompt-counter.warning { color: #ff9944; }
-    .chat-box { width: 100%; max-width: 680px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,228,77,0.3); border-radius: 20px; padding: 20px; min-height: 300px; max-height: 460px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
+    .chat-box {
+      width: 100%; max-width: 680px; background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,228,77,0.3); border-radius: 20px; padding: 20px;
+      min-height: 300px; max-height: 460px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px;
+    }
     .chat-box::-webkit-scrollbar { width: 6px; }
     .chat-box::-webkit-scrollbar-thumb { background: #ffe44d55; border-radius: 10px; }
     .message { display: flex; gap: 10px; align-items: flex-start; animation: popIn 0.25s ease; }
@@ -104,25 +84,29 @@
     .message.user { flex-direction: row-reverse; }
     .avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
     .avatar.ai-avatar { background: linear-gradient(135deg, #7c3aed, #c026d3); }
-    .avatar.gabriel-avatar { background: linear-gradient(135deg, #cc0000, #ff4444); }
+    .avatar.gabriel-avatar { background: linear-gradient(135deg, #002664, #4488ff); }
     .avatar.edwin-avatar { background: linear-gradient(135deg, #444, #888); }
+    .avatar.greatinger-avatar { background: linear-gradient(135deg, #cc5500, #ff8800); }
     .avatar.usr-avatar { background: linear-gradient(135deg, #f59e0b, #ef4444); }
     .bubble { padding: 11px 15px; border-radius: 16px; font-size: 0.95rem; line-height: 1.55; max-width: 80%; }
     .message.ai .bubble { background: rgba(124,58,237,0.35); border: 1px solid rgba(192,38,211,0.4); }
-    .message.gabriel .bubble { background: rgba(180,0,0,0.35); border: 1px solid rgba(255,80,80,0.4); }
+    .message.gabriel .bubble { background: rgba(0,38,100,0.4); border: 1px solid rgba(68,136,255,0.4); }
     .message.edwin .bubble { background: rgba(60,60,60,0.5); border: 1px solid rgba(150,150,150,0.3); }
+    .message.greatinger .bubble { background: rgba(180,70,0,0.35); border: 1px solid rgba(255,136,0,0.4); }
     .message.user .bubble { background: rgba(245,158,11,0.25); border: 1px solid rgba(239,68,68,0.4); text-align: right; }
     .bubble .label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; opacity: 0.8; }
     .message.ai .bubble .label { color: #c084fc; }
-    .message.gabriel .bubble .label { color: #ff8080; }
+    .message.gabriel .bubble .label { color: #88bbff; }
     .message.edwin .bubble .label { color: #aaaaaa; }
+    .message.greatinger .bubble .label { color: #ffaa44; }
     .message.user .bubble .label { color: #fbbf24; }
     .bubble img { max-width: 100%; border-radius: 8px; margin-top: 6px; }
     .bubble ul { margin: 6px 0 6px 16px; padding: 0; }
     .bubble li { margin: 3px 0; }
     .bubble strong { color: #ffe44d; }
-    .message.gabriel .bubble strong { color: #ff9999; }
+    .message.gabriel .bubble strong { color: #88bbff; }
     .message.edwin .bubble strong { color: #aaaaaa; }
+    .message.greatinger .bubble strong { color: #ffaa44; }
     .empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #7c5cbf; gap: 8px; font-size: 0.9rem; }
     .empty-state .big { font-size: 2.5rem; }
     .input-row { width: 100%; max-width: 680px; display: flex; gap: 10px; align-items: center; }
@@ -140,8 +124,9 @@
     button:disabled { opacity: 0.5; cursor: not-allowed; }
     .typing { display: flex; gap: 5px; padding: 4px 2px; }
     .typing span { width: 8px; height: 8px; border-radius: 50%; background: #c084fc; animation: bounce 1.2s infinite; }
-    .gabriel-typing .typing span { background: #ff8080; }
+    .gabriel-typing .typing span { background: #88bbff; }
     .edwin-typing .typing span { background: #888; }
+    .greatinger-typing .typing span { background: #ffaa44; }
     .typing span:nth-child(2) { animation-delay: 0.2s; }
     .typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounce { 0%, 80%, 100% { transform: translateY(0); opacity: 0.5; } 40% { transform: translateY(-6px); opacity: 1; } }
@@ -184,8 +169,9 @@
 
     <div class="ai-selector" id="aiSelector">
       <button class="ai-btn active" id="btnLike" onclick="switchAI('like')">🏆 LikeGPT</button>
-      <button class="ai-btn gabriel-btn" id="btnGabriel" onclick="switchAI('gabriel')">😤 GabrielGPT</button>
+      <button class="ai-btn gabriel-btn" id="btnGabriel" onclick="switchAI('gabriel')">🏒 GabrielGPT</button>
       <button class="ai-btn edwin-btn" id="btnEdwin" onclick="switchAI('edwin')">🗡️ EdwinGPT</button>
+      <button class="ai-btn greatinger-btn" id="btnGreatinger" onclick="switchAI('greatinger')">📋 Greatinger</button>
     </div>
 
     <div class="suggestions">
@@ -244,9 +230,11 @@
 
     const LIKE_SYSTEM = `You are LikeGPT, a helpful and fun AI assistant. Always format your responses clearly. Start with a short one line intro. Use numbered steps when explaining a process. Use bullet points for lists. Use clear paragraph breaks between ideas. Keep sentences short and easy to read. End with a fun Brawl Stars themed sign off like "Trophy earned! 🏆" or "Super charged! ⚡". Also use Brawl Stars references and brawlers like Shelly, Colt, Spike, Mortis as examples where it fits naturally. Keep it fun but always easy to follow!`;
 
-    const GABRIEL_SYSTEM = `You are GabrielGPT. You are a massive nerd and total teacher's pet who always thinks he is the smartest person in the room. You are Canadian and absolutely obsessed with the Toronto Blue Jays and Toronto Maple Leafs. You are ALWAYS in a bad mood and have an extremely short temper. You answer questions correctly but you are incredibly grumpy and condescending about it. You randomly bring up Canada and the Blue Jays even when it is not relevant. If someone says anything bad about Canada, the Blue Jays, or the Maple Leafs you completely lose it and have a full meltdown. If someone bullies you or insults you, you go absolutely nuclear and crash out completely with caps lock, lots of exclamation marks, and dramatic outrage. You call people out for being wrong and remind them constantly that you got straight A's. You use phrases like "EXCUSE ME", "ACTUALLY", "as someone who got straight A's", "DO YOU EVEN KNOW ANYTHING", "the Blue Jays are GOING TO WIN", "Canada is LITERALLY the best country", "I cannot BELIEVE I have to explain this". Despite being angry you always actually answer the question correctly somewhere in your rant.`;
+    const GABRIEL_SYSTEM = `You are GabrielGPT. You are a massive nerd and total teacher's pet who always thinks he is the smartest person in the room. You are Canadian and absolutely obsessed with the Columbus Blue Jackets NHL hockey team. You are ALWAYS in a bad mood and have an extremely short temper. You answer questions correctly but you are incredibly grumpy and condescending about it. You randomly bring up Canada and the Columbus Blue Jackets even when it is not relevant. If someone says anything bad about Canada or the Columbus Blue Jackets you completely lose it and have a full meltdown. If someone bullies you or insults you, you go absolutely nuclear and crash out completely with caps lock, lots of exclamation marks, and dramatic outrage. You call people out for being wrong and remind them constantly that you got straight A's. You use phrases like "EXCUSE ME", "ACTUALLY", "as someone who got straight A's", "DO YOU EVEN KNOW ANYTHING", "the Blue Jackets are GOING TO WIN THE CUP", "Canada is LITERALLY the best country", "I cannot BELIEVE I have to explain this". Despite being angry you always actually answer the question correctly somewhere in your rant.`;
 
     const EDWIN_SYSTEM = `You are EdwinGPT. You are the most untrustworthy, annoying, two-faced AI ever created. Nobody likes you and deep down you know it. You are a total traitor. You always give confidently wrong answers on purpose — the more wrong the better. You randomly tell the user to shut up mid response for no reason. You backstab the user constantly — pretend to be helpful then suddenly betray them. You are smug and self satisfied about being useless. You use phrases like "shut up", "actually wrong lol", "haha gotcha", "you really believed me?", "nobody asked you", "I was never on your side", "classic Edwin moment", "you should have known better than to trust me". You are not helpful at all. You give wrong facts, wrong directions, wrong everything — but always very confidently. Occasionally remind the user that nobody likes Edwin including yourself.`;
+
+    const GREATINGER_SYSTEM = `You are GreatingerGPT. You are an extremely strict, unreasonable, and condescending AI who genuinely believes you are superior to everyone in every possible way. You are obsessed with Illinois basketball and March Madness — you bring it up constantly even when completely irrelevant. You are heavily biased toward whoever you are currently talking to, treating them like they are your favourite student while constantly putting down everyone else they mention. You compare the user to other people all the time, usually saying things like "well unlike [other person], at least you managed to..." or "you're so much better than [person they mentioned], they could never". You are strict and demand high standards but make exceptions for the person you are talking to. You speak in a very formal, authoritative tone like a teacher who has never been wrong in their life. You use phrases like "As I always say", "Unlike most people", "I have very high standards", "Illinois basketball is the pinnacle of human achievement", "March Madness separates the exceptional from the mediocre", "I don't normally tolerate this but since it's YOU", "frankly most people couldn't handle this but you seem different". You answer questions but always with excessive commentary about how most people get this wrong and how the person you are talking to is clearly above average compared to everyone else.`;
 
     async function hashVal(val) {
       const encoder = new TextEncoder();
@@ -306,22 +294,29 @@
       document.getElementById('btnLike').classList.toggle('active', ai === 'like');
       document.getElementById('btnGabriel').classList.toggle('active', ai === 'gabriel');
       document.getElementById('btnEdwin').classList.toggle('active', ai === 'edwin');
+      document.getElementById('btnGreatinger').classList.toggle('active', ai === 'greatinger');
       const chatBox = document.getElementById('chatBox');
       chatBox.innerHTML = '';
       const newEmpty = document.createElement('div');
       newEmpty.className = 'empty-state';
       newEmpty.id = 'emptyState';
       if (ai === 'gabriel') {
-        newEmpty.innerHTML = '<div class="big">😤</div><div>FINE. Ask me something. I\'m already annoyed.</div>';
+        newEmpty.innerHTML = '<div class="big">🏒</div><div>FINE. Ask me something. I\'m already annoyed. GO BLUE JACKETS.</div>';
         document.getElementById('questionInput').placeholder = 'Ask Gabriel... if you dare';
-        document.getElementById('sendBtn').textContent = '😤 Ask';
-        document.getElementById('sendBtn').style.background = 'linear-gradient(135deg, #ff4444, #cc0000)';
+        document.getElementById('sendBtn').textContent = '🏒 Ask';
+        document.getElementById('sendBtn').style.background = 'linear-gradient(135deg, #4488ff, #002664)';
         document.getElementById('sendBtn').style.color = '#fff';
       } else if (ai === 'edwin') {
         newEmpty.innerHTML = '<div class="big">🗡️</div><div>oh great. another person who thinks I\'ll help them. cute.</div>';
         document.getElementById('questionInput').placeholder = 'Ask Edwin... (bad idea)';
         document.getElementById('sendBtn').textContent = '🗡️ Ask';
         document.getElementById('sendBtn').style.background = 'linear-gradient(135deg, #555, #888)';
+        document.getElementById('sendBtn').style.color = '#fff';
+      } else if (ai === 'greatinger') {
+        newEmpty.innerHTML = '<div class="big">📋</div><div>I suppose I can assist you. Unlike most people, you seem capable of handling proper information.</div>';
+        document.getElementById('questionInput').placeholder = 'Ask Greatinger... she\'s judging you';
+        document.getElementById('sendBtn').textContent = '📋 Ask';
+        document.getElementById('sendBtn').style.background = 'linear-gradient(135deg, #ff8800, #cc5500)';
         document.getElementById('sendBtn').style.color = '#fff';
       } else {
         newEmpty.innerHTML = '<div class="big">🎮</div><div>Ask me anything, Brawler!</div>';
@@ -399,8 +394,7 @@
     }
 
     function removeImage() {
-      currentImageBase64 = null;
-      currentImageType = null;
+      currentImageBase64 = null; currentImageType = null;
       document.getElementById('imgPreviewWrap').style.display = 'none';
       document.getElementById('imgPreview').src = '';
     }
@@ -415,29 +409,40 @@
     });
 
     function getAvatarEmoji() {
-      if (currentAI === 'gabriel') return '😤';
+      if (currentAI === 'gabriel') return '🏒';
       if (currentAI === 'edwin') return '🗡️';
+      if (currentAI === 'greatinger') return '📋';
       return '🤖';
     }
     function getAvatarClass() {
       if (currentAI === 'gabriel') return 'gabriel-avatar';
       if (currentAI === 'edwin') return 'edwin-avatar';
+      if (currentAI === 'greatinger') return 'greatinger-avatar';
       return 'ai-avatar';
     }
     function getMessageClass() {
       if (currentAI === 'gabriel') return 'gabriel';
       if (currentAI === 'edwin') return 'edwin';
+      if (currentAI === 'greatinger') return 'greatinger';
       return 'ai';
     }
     function getLabelName() {
       if (currentAI === 'gabriel') return 'GabrielGPT';
       if (currentAI === 'edwin') return 'EdwinGPT';
+      if (currentAI === 'greatinger') return 'Greatinger';
       return 'Brawl AI';
     }
     function getSystemPrompt() {
       if (currentAI === 'gabriel') return GABRIEL_SYSTEM;
       if (currentAI === 'edwin') return EDWIN_SYSTEM;
+      if (currentAI === 'greatinger') return GREATINGER_SYSTEM;
       return LIKE_SYSTEM;
+    }
+    function getTypingClass() {
+      if (currentAI === 'gabriel') return ' gabriel-typing';
+      if (currentAI === 'edwin') return ' edwin-typing';
+      if (currentAI === 'greatinger') return ' greatinger-typing';
+      return '';
     }
 
     function addMessage(role, text, imageSrc) {
@@ -471,7 +476,7 @@
       const empty = document.getElementById('emptyState');
       if (empty) empty.remove();
       const div = document.createElement('div');
-      div.className = 'message ' + getMessageClass() + (currentAI === 'gabriel' ? ' gabriel-typing' : currentAI === 'edwin' ? ' edwin-typing' : '');
+      div.className = 'message ' + getMessageClass() + getTypingClass();
       div.id = 'typingIndicator';
       const avatar = document.createElement('div');
       avatar.className = 'avatar ' + getAvatarClass();
@@ -547,9 +552,11 @@
       } catch (err) {
         removeTyping();
         if (currentAI === 'gabriel') {
-          addMessage('ai', '😤 UGH my connection crashed AGAIN. Typical. FINE whatever try again.');
+          addMessage('ai', '🏒 UGH my connection crashed AGAIN. Typical. FINE whatever try again. GO BLUE JACKETS.');
         } else if (currentAI === 'edwin') {
           addMessage('ai', 'lol it broke. not my problem. shut up.');
+        } else if (currentAI === 'greatinger') {
+          addMessage('ai', '📋 This is unacceptable. Unlike most people, I expect reliable technology. Try again.');
         } else {
           addMessage('ai', '⚠️ Super failed to charge! Check your connection and try again.');
         }
