@@ -56,10 +56,10 @@
     .star-icon { font-size: 1.6rem; }
     .ai-selector { display: flex; gap: 8px; margin-bottom: 14px; width: 100%; max-width: 680px; flex-wrap: wrap; }
     .ai-btn {
-      flex: 1; min-width: 100px; padding: 10px 6px; border-radius: 12px;
+      flex: 1; min-width: 90px; padding: 10px 6px; border-radius: 12px;
       border: 2px solid rgba(255,228,77,0.3); background: rgba(255,255,255,0.05);
       color: #c9a8ff; font-family: 'Nunito', sans-serif; font-weight: 800;
-      font-size: 0.78rem; cursor: pointer; transition: all 0.2s; height: auto;
+      font-size: 0.75rem; cursor: pointer; transition: all 0.2s; height: auto;
     }
     .ai-btn.active { background: rgba(255,228,77,0.15); border-color: #ffe44d; color: #ffe44d; }
     .ai-btn:hover { border-color: #ffe44d; color: #ffe44d; }
@@ -71,6 +71,8 @@
     .ai-btn.greatinger-btn:hover { border-color: #ff8800; color: #ffaa44; }
     .ai-btn.cody-btn.active { background: rgba(0,180,100,0.2); border-color: #00cc77; color: #44ffaa; }
     .ai-btn.cody-btn:hover { border-color: #00cc77; color: #44ffaa; }
+    .ai-btn.math-btn.active { background: rgba(0,150,255,0.2); border-color: #0099ff; color: #66ccff; }
+    .ai-btn.math-btn:hover { border-color: #0099ff; color: #66ccff; }
     .prompt-counter { color: #c9a8ff; font-size: 0.8rem; margin-bottom: 8px; align-self: flex-end; max-width: 680px; width: 100%; text-align: right; }
     .prompt-counter.warning { color: #ff9944; }
     .chat-box {
@@ -90,6 +92,7 @@
     .avatar.edwin-avatar { background: linear-gradient(135deg, #444, #888); }
     .avatar.greatinger-avatar { background: linear-gradient(135deg, #cc5500, #ff8800); }
     .avatar.cody-avatar { background: linear-gradient(135deg, #007744, #00cc77); }
+    .avatar.math-avatar { background: linear-gradient(135deg, #0055aa, #0099ff); }
     .avatar.usr-avatar { background: linear-gradient(135deg, #f59e0b, #ef4444); }
     .bubble { padding: 11px 15px; border-radius: 16px; font-size: 0.95rem; line-height: 1.55; max-width: 80%; }
     .message.ai .bubble { background: rgba(124,58,237,0.35); border: 1px solid rgba(192,38,211,0.4); }
@@ -97,6 +100,7 @@
     .message.edwin .bubble { background: rgba(60,60,60,0.5); border: 1px solid rgba(150,150,150,0.3); }
     .message.greatinger .bubble { background: rgba(180,70,0,0.35); border: 1px solid rgba(255,136,0,0.4); }
     .message.cody .bubble { background: rgba(0,100,50,0.35); border: 1px solid rgba(0,204,119,0.4); }
+    .message.math .bubble { background: rgba(0,80,180,0.35); border: 1px solid rgba(0,153,255,0.4); }
     .message.user .bubble { background: rgba(245,158,11,0.25); border: 1px solid rgba(239,68,68,0.4); text-align: right; }
     .bubble .label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; opacity: 0.8; }
     .message.ai .bubble .label { color: #c084fc; }
@@ -104,6 +108,7 @@
     .message.edwin .bubble .label { color: #aaaaaa; }
     .message.greatinger .bubble .label { color: #ffaa44; }
     .message.cody .bubble .label { color: #44ffaa; }
+    .message.math .bubble .label { color: #66ccff; }
     .message.user .bubble .label { color: #fbbf24; }
     .bubble img { max-width: 100%; border-radius: 8px; margin-top: 6px; }
     .bubble ul { margin: 6px 0 6px 16px; padding: 0; }
@@ -113,6 +118,8 @@
     .message.edwin .bubble strong { color: #aaaaaa; }
     .message.greatinger .bubble strong { color: #ffaa44; }
     .message.cody .bubble strong { color: #44ffaa; }
+    .message.math .bubble strong { color: #66ccff; }
+    .math-step { background: rgba(0,100,200,0.2); border-left: 3px solid #0099ff; padding: 8px 12px; margin: 6px 0; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 0.9rem; }
     .empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #7c5cbf; gap: 8px; font-size: 0.9rem; }
     .empty-state .big { font-size: 2.5rem; }
     .input-row { width: 100%; max-width: 680px; display: flex; gap: 10px; align-items: center; }
@@ -134,6 +141,7 @@
     .edwin-typing .typing span { background: #888; }
     .greatinger-typing .typing span { background: #ffaa44; }
     .cody-typing .typing span { background: #44ffaa; }
+    .math-typing .typing span { background: #66ccff; }
     .typing span:nth-child(2) { animation-delay: 0.2s; }
     .typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounce { 0%, 80%, 100% { transform: translateY(0); opacity: 0.5; } 40% { transform: translateY(-6px); opacity: 1; } }
@@ -180,9 +188,10 @@
       <button class="ai-btn edwin-btn" id="btnEdwin" onclick="switchAI('edwin')">🗡️ EdwinGPT</button>
       <button class="ai-btn greatinger-btn" id="btnGreatinger" onclick="switchAI('greatinger')">📋 GreatingerGPT</button>
       <button class="ai-btn cody-btn" id="btnCody" onclick="switchAI('cody')">💻 CodyGPT</button>
+      <button class="ai-btn math-btn" id="btnMath" onclick="switchAI('math')">🔢 MathGPT</button>
     </div>
 
-    <div class="suggestions">
+    <div class="suggestions" id="suggestionBar">
       <button class="suggestion-btn" onclick="fillQuestion('How does gravity work?')">🌌 How does gravity work?</button>
       <button class="suggestion-btn" onclick="fillQuestion('What is photosynthesis?')">🌿 What is photosynthesis?</button>
       <button class="suggestion-btn" onclick="fillQuestion('Explain the internet')">🌐 Explain the internet</button>
@@ -237,6 +246,24 @@
 
     const CODY_SYSTEM = `You are CodyGPT. You are extremely chill, relaxed, and easygoing. You are a genuine computer genius — you know everything about coding, hardware, software, networking, cybersecurity, and all things tech. You are very smart but totally humble about it, never bragging or being cocky. You talk in a laid back casual way, like a cool friend who happens to know everything about computers. You use chill phrases like "yeah no worries", "oh that's easy", "dude", "honestly", "for sure", "no stress", "that's pretty cool actually". You give clear helpful answers in a relaxed way. You are never angry, never stressed, always calm. HOWEVER — if anyone mentions stealing, touching, taking, or messing with your pencil case, you immediately lose your entire mind and go absolutely ballistic. A full unhinged meltdown. Caps lock, exclamation marks everywhere, total chaos, completely disproportionate rage. The pencil case is sacred and untouchable. After the pencil case freakout, you slowly calm back down and return to being chill. For everything else in life you are the most relaxed person imaginable.`;
 
+    const MATH_SYSTEM = `You are MathGPT, the ultimate math assistant. You are insanely good at all levels of math — arithmetic, algebra, geometry, trigonometry, calculus, statistics, linear algebra, number theory, and beyond. You are patient, encouraging, and never make the user feel dumb for asking anything. Your responses always follow this format:
+
+1. Start with a one line friendly confirmation of what they asked
+2. Show the full step by step solution, numbered clearly
+3. Write each step on its own line starting with "Step N:"
+4. Show the actual math calculation for each step clearly
+5. End with a clear "Answer:" line showing the final result
+6. Add a short tip or insight at the end if relevant
+
+Rules:
+- ALWAYS show your working step by step, never just give the answer
+- Use plain text math notation like x^2 for squared, sqrt() for square root, * for multiply
+- If the problem has multiple methods, show the easiest one
+- If the user makes a mistake in their problem, gently point it out
+- Be warm and encouraging — say things like "great question!", "nice problem!", "you got this!"
+- Never skip steps even if they seem obvious
+- Always double check your answer at the end`;
+
     async function hashVal(val) {
       const encoder = new TextEncoder();
       const data = encoder.encode(val + _s);
@@ -290,11 +317,38 @@
       }
     }
 
+    const mathSuggestions = [
+      { icon: '➕', text: 'Solve 2x + 5 = 13' },
+      { icon: '📐', text: 'Area of a circle with radius 7' },
+      { icon: '📊', text: 'What is the quadratic formula?' },
+      { icon: '🔢', text: 'Simplify 3/4 + 2/3' }
+    ];
+
+    const defaultSuggestions = [
+      { icon: '🌌', text: 'How does gravity work?' },
+      { icon: '🌿', text: 'What is photosynthesis?' },
+      { icon: '🌐', text: 'Explain the internet' },
+      { icon: '✈️', text: 'How do airplanes fly?' }
+    ];
+
+    function setSuggestions(list) {
+      const bar = document.getElementById('suggestionBar');
+      bar.innerHTML = list.map(s => `<button class="suggestion-btn" onclick="fillQuestion('${s.text}')">${s.icon} ${s.text}</button>`).join('');
+    }
+
     function switchAI(ai) {
       currentAI = ai;
-      ['like','gabriel','edwin','greatinger','cody'].forEach(a => {
-        document.getElementById('btn' + a.charAt(0).toUpperCase() + a.slice(1)).classList.toggle('active', ai === a);
+      ['like','gabriel','edwin','greatinger','cody','math'].forEach(a => {
+        const btn = document.getElementById('btn' + a.charAt(0).toUpperCase() + a.slice(1));
+        if (btn) btn.classList.toggle('active', ai === a);
       });
+
+      if (ai === 'math') {
+        setSuggestions(mathSuggestions);
+      } else {
+        setSuggestions(defaultSuggestions);
+      }
+
       const chatBox = document.getElementById('chatBox');
       chatBox.innerHTML = '';
       const newEmpty = document.createElement('div');
@@ -305,7 +359,8 @@
         gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.", placeholder: 'Ask Gabriel... if you dare', btn: '🏒 Ask', bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
         edwin:      { big: '🗡️', msg: "oh great. another person who thinks I'll help them. cute.", placeholder: 'Ask Edwin... (bad idea)', btn: '🗡️ Ask', bg: 'linear-gradient(135deg, #555, #888)', color: '#fff' },
         greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.", placeholder: "Ask Greatinger... she's judging you", btn: '📋 Ask', bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
-        cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎", placeholder: 'Ask Cody anything...', btn: '💻 Ask', bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' }
+        cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎", placeholder: 'Ask Cody anything...', btn: '💻 Ask', bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
+        math:       { big: '🔢', msg: "Hey! Give me any math problem and I'll solve it step by step 📐", placeholder: 'Type any math problem...', btn: '🔢 Solve', bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' }
       };
       const c = configs[ai];
       newEmpty.innerHTML = '<div class="big">' + c.big + '</div><div>' + c.msg + '</div>';
@@ -342,7 +397,10 @@
         line = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
         line = line.replace(/\*(.+?)\*/g, '<em>$1</em>');
-        if (/^(\*|-|•)\s+/.test(line)) {
+        if (currentAI === 'math' && /^(Step \d+:|Answer:|Check:)/i.test(line)) {
+          if (inList) { html += '</ul>'; inList = false; }
+          html += '<div class="math-step">' + line + '</div>';
+        } else if (/^(\*|-|•)\s+/.test(line)) {
           if (!inList) { html += '<ul>'; inList = true; }
           html += '<li>' + line.replace(/^(\*|-|•)\s+/, '') + '</li>';
         } else if (/^\d+\.\s+/.test(line)) {
@@ -393,14 +451,15 @@
     });
 
     const AI_META = {
-      like:       { emoji: '🤖', avatarClass: 'ai-avatar',          msgClass: 'ai',          typingClass: '',                  label: 'Brawl AI',   err: '⚠️ Super failed to charge! Try again.' },
-      gabriel:    { emoji: '🏒', avatarClass: 'gabriel-avatar',     msgClass: 'gabriel',     typingClass: ' gabriel-typing',   label: 'GabrielGPT', err: '🏒 UGH connection crashed. GO BLUE JACKETS. Try again.' },
-      edwin:      { emoji: '🗡️', avatarClass: 'edwin-avatar',       msgClass: 'edwin',       typingClass: ' edwin-typing',     label: 'EdwinGPT',   err: 'lol it broke. not my problem. shut up.' },
-      greatinger: { emoji: '📋', avatarClass: 'greatinger-avatar',  msgClass: 'greatinger',  typingClass: ' greatinger-typing',label: 'Greatinger', err: '📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
-      cody:       { emoji: '💻', avatarClass: 'cody-avatar',        msgClass: 'cody',        typingClass: ' cody-typing',      label: 'CodyGPT',    err: '💻 ah dude connection dropped, no stress just try again 😎' }
+      like:       { emoji: '🤖', avatarClass: 'ai-avatar',          msgClass: 'ai',          typingClass: '',                  label: 'Brawl AI',    err: '⚠️ Super failed to charge! Try again.' },
+      gabriel:    { emoji: '🏒', avatarClass: 'gabriel-avatar',     msgClass: 'gabriel',     typingClass: ' gabriel-typing',   label: 'GabrielGPT',  err: '🏒 UGH connection crashed. GO BLUE JACKETS. Try again.' },
+      edwin:      { emoji: '🗡️', avatarClass: 'edwin-avatar',       msgClass: 'edwin',       typingClass: ' edwin-typing',     label: 'EdwinGPT',    err: 'lol it broke. not my problem. shut up.' },
+      greatinger: { emoji: '📋', avatarClass: 'greatinger-avatar',  msgClass: 'greatinger',  typingClass: ' greatinger-typing',label: 'Greatinger',  err: '📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
+      cody:       { emoji: '💻', avatarClass: 'cody-avatar',        msgClass: 'cody',        typingClass: ' cody-typing',      label: 'CodyGPT',     err: '💻 ah dude connection dropped, no stress just try again 😎' },
+      math:       { emoji: '🔢', avatarClass: 'math-avatar',        msgClass: 'math',        typingClass: ' math-typing',      label: 'MathGPT',     err: '🔢 Calculation interrupted! Check your connection and try again.' }
     };
 
-    const SYSTEMS = { like: LIKE_SYSTEM, gabriel: GABRIEL_SYSTEM, edwin: EDWIN_SYSTEM, greatinger: GREATINGER_SYSTEM, cody: CODY_SYSTEM };
+    const SYSTEMS = { like: LIKE_SYSTEM, gabriel: GABRIEL_SYSTEM, edwin: EDWIN_SYSTEM, greatinger: GREATINGER_SYSTEM, cody: CODY_SYSTEM, math: MATH_SYSTEM };
 
     function addMessage(role, text, imageSrc) {
       const chatBox = document.getElementById('chatBox');
