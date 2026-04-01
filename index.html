@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard</title>
+  <title>GPThub</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +35,6 @@
       animation: bgShift 12s ease infinite;
       z-index: 0;
     }
-
     @keyframes bgShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -56,6 +55,92 @@
       90% { opacity: 0.3; }
       100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
+
+    /* ===================== GALAXY VORTEX INTRO ===================== */
+    #galaxyIntro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000005;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    #galaxyIntro.fade-out {
+      animation: galaxyFadeOut 1.2s ease forwards;
+    }
+    @keyframes galaxyFadeOut {
+      0% { opacity: 1; transform: scale(1); }
+      60% { opacity: 1; transform: scale(1.08); }
+      100% { opacity: 0; transform: scale(0.92); pointer-events: none; }
+    }
+
+    #galaxyCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .galaxy-title-wrap {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      pointer-events: none;
+    }
+    .galaxy-title {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 10vw, 7rem);
+      letter-spacing: 4px;
+      color: transparent;
+      background: linear-gradient(135deg, #fff 0%, #ffe44d 30%, #c084fc 60%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: titleReveal 2s ease forwards, titleFloat 4s ease-in-out 2s infinite;
+      opacity: 0;
+      text-shadow: none;
+      filter: drop-shadow(0 0 40px rgba(255,228,77,0.8)) drop-shadow(0 0 80px rgba(192,132,252,0.5));
+    }
+    @keyframes titleReveal {
+      0% { opacity: 0; transform: scale(0.3) rotate(-15deg); filter: blur(20px) drop-shadow(0 0 0px transparent); }
+      50% { opacity: 0.8; filter: blur(4px) drop-shadow(0 0 60px rgba(255,228,77,1)); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0px) drop-shadow(0 0 40px rgba(255,228,77,0.8)) drop-shadow(0 0 80px rgba(192,132,252,0.5)); }
+    }
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-12px) scale(1.02); }
+    }
+
+    .galaxy-sub {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: #c084fc;
+      opacity: 0;
+      animation: subReveal 1.5s ease 1.5s forwards;
+      margin-top: 12px;
+    }
+    @keyframes subReveal {
+      from { opacity: 0; letter-spacing: 20px; }
+      to   { opacity: 0.8; letter-spacing: 8px; }
+    }
+
+    .galaxy-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(192,132,252,0.15);
+      animation: ringExpand linear infinite;
+      pointer-events: none;
+    }
+    @keyframes ringExpand {
+      0%   { transform: translate(-50%,-50%) scale(0); opacity: 0.7; }
+      100% { transform: translate(-50%,-50%) scale(6); opacity: 0; }
+    }
+
+    /* ===================== END GALAXY ===================== */
 
     /* Everything on top of bg */
     #loginScreen, #premiumScreen, #mainApp { position: relative; z-index: 1; }
@@ -152,8 +237,8 @@
     }
     .ai-btn.gabriel-btn.active { background: rgba(0,38,100,0.3); border-color: #4488ff; color: #88bbff; box-shadow: 0 0 15px rgba(68,136,255,0.3); }
     .ai-btn.gabriel-btn:hover { border-color: #4488ff; color: #88bbff; }
-    .ai-btn.edwin-btn.active { background: rgba(100,100,100,0.2); border-color: #888; color: #aaa; box-shadow: 0 0 15px rgba(136,136,136,0.2); }
-    .ai-btn.edwin-btn:hover { border-color: #888; color: #aaa; }
+    .ai-btn.anderson-btn.active { background: rgba(100,100,100,0.2); border-color: #888; color: #aaa; box-shadow: 0 0 15px rgba(136,136,136,0.2); }
+    .ai-btn.anderson-btn:hover { border-color: #888; color: #aaa; }
     .ai-btn.greatinger-btn.active { background: rgba(230,100,0,0.2); border-color: #ff8800; color: #ffaa44; box-shadow: 0 0 15px rgba(255,136,0,0.3); }
     .ai-btn.greatinger-btn:hover { border-color: #ff8800; color: #ffaa44; }
     .ai-btn.cody-btn.active { background: rgba(0,180,100,0.2); border-color: #00cc77; color: #44ffaa; box-shadow: 0 0 15px rgba(0,204,119,0.3); }
@@ -197,7 +282,7 @@
     .avatar:hover { transform: scale(1.1); }
     .avatar.ai-avatar { background: linear-gradient(135deg, #7c3aed, #c026d3); box-shadow: 0 0 10px rgba(124,58,237,0.5); }
     .avatar.gabriel-avatar { background: linear-gradient(135deg, #002664, #4488ff); box-shadow: 0 0 10px rgba(68,136,255,0.5); }
-    .avatar.edwin-avatar { background: linear-gradient(135deg, #444, #888); box-shadow: 0 0 8px rgba(136,136,136,0.4); }
+    .avatar.anderson-avatar { background: linear-gradient(135deg, #444, #888); box-shadow: 0 0 8px rgba(136,136,136,0.4); }
     .avatar.greatinger-avatar { background: linear-gradient(135deg, #cc5500, #ff8800); box-shadow: 0 0 10px rgba(255,136,0,0.5); }
     .avatar.cody-avatar { background: linear-gradient(135deg, #007744, #00cc77); box-shadow: 0 0 10px rgba(0,204,119,0.5); }
     .avatar.math-avatar { background: linear-gradient(135deg, #0055aa, #0099ff); box-shadow: 0 0 10px rgba(0,153,255,0.5); }
@@ -205,32 +290,32 @@
 
     .bubble { padding: 11px 15px; border-radius: 16px; font-size: 0.95rem; line-height: 1.55; max-width: 80%; backdrop-filter: blur(5px); transition: all 0.3s; }
     .bubble:hover { transform: scale(1.01); }
-    .message.ai       .bubble { background: rgba(124,58,237,0.25); border: 1px solid rgba(192,38,211,0.35); }
-    .message.gabriel   .bubble { background: rgba(0,38,100,0.3);   border: 1px solid rgba(68,136,255,0.35); }
-    .message.edwin     .bubble { background: rgba(60,60,60,0.4);   border: 1px solid rgba(150,150,150,0.25); }
-    .message.greatinger.bubble { background: rgba(180,70,0,0.25);  border: 1px solid rgba(255,136,0,0.35); }
-    .message.cody      .bubble { background: rgba(0,100,50,0.25);  border: 1px solid rgba(0,204,119,0.35); }
-    .message.math      .bubble { background: rgba(0,80,180,0.25);  border: 1px solid rgba(0,153,255,0.35); }
-    .message.user      .bubble { background: rgba(245,158,11,0.18);border: 1px solid rgba(239,68,68,0.35); text-align: right; }
+    .message.ai         .bubble { background: rgba(124,58,237,0.25); border: 1px solid rgba(192,38,211,0.35); }
+    .message.gabriel    .bubble { background: rgba(0,38,100,0.3);   border: 1px solid rgba(68,136,255,0.35); }
+    .message.anderson   .bubble { background: rgba(60,60,60,0.4);   border: 1px solid rgba(150,150,150,0.25); }
+    .message.greatinger .bubble { background: rgba(180,70,0,0.25);  border: 1px solid rgba(255,136,0,0.35); }
+    .message.cody       .bubble { background: rgba(0,100,50,0.25);  border: 1px solid rgba(0,204,119,0.35); }
+    .message.math       .bubble { background: rgba(0,80,180,0.25);  border: 1px solid rgba(0,153,255,0.35); }
+    .message.user       .bubble { background: rgba(245,158,11,0.18);border: 1px solid rgba(239,68,68,0.35); text-align: right; }
 
     .bubble .label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; opacity: 0.85; }
-    .message.ai        .bubble .label { color: #c084fc; }
-    .message.gabriel   .bubble .label { color: #88bbff; }
-    .message.edwin     .bubble .label { color: #aaaaaa; }
-    .message.greatinger.bubble .label { color: #ffaa44; }
-    .message.cody      .bubble .label { color: #44ffaa; }
-    .message.math      .bubble .label { color: #66ccff; }
-    .message.user      .bubble .label { color: #fbbf24; }
+    .message.ai         .bubble .label { color: #c084fc; }
+    .message.gabriel    .bubble .label { color: #88bbff; }
+    .message.anderson   .bubble .label { color: #aaaaaa; }
+    .message.greatinger .bubble .label { color: #ffaa44; }
+    .message.cody       .bubble .label { color: #44ffaa; }
+    .message.math       .bubble .label { color: #66ccff; }
+    .message.user       .bubble .label { color: #fbbf24; }
 
     .bubble img { max-width: 100%; border-radius: 8px; margin-top: 6px; }
     .bubble ul { margin: 6px 0 6px 16px; padding: 0; }
     .bubble li { margin: 3px 0; }
     .bubble strong { color: #ffe44d; }
-    .message.gabriel   .bubble strong { color: #88bbff; }
-    .message.edwin     .bubble strong { color: #aaaaaa; }
-    .message.greatinger.bubble strong { color: #ffaa44; }
-    .message.cody      .bubble strong { color: #44ffaa; }
-    .message.math      .bubble strong { color: #66ccff; }
+    .message.gabriel    .bubble strong { color: #88bbff; }
+    .message.anderson   .bubble strong { color: #aaaaaa; }
+    .message.greatinger .bubble strong { color: #ffaa44; }
+    .message.cody       .bubble strong { color: #44ffaa; }
+    .message.math       .bubble strong { color: #66ccff; }
 
     .math-step { background: rgba(0,100,200,0.2); border-left: 3px solid #0099ff; padding: 8px 12px; margin: 6px 0; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 0.9rem; }
 
@@ -259,11 +344,11 @@
     /* TYPING */
     .typing { display: flex; gap: 5px; padding: 4px 2px; }
     .typing span { width: 8px; height: 8px; border-radius: 50%; background: #c084fc; animation: typingBounce 1.2s infinite; }
-    .gabriel-typing .typing span   { background: #88bbff; }
-    .edwin-typing .typing span     { background: #888; }
-    .greatinger-typing .typing span{ background: #ffaa44; }
-    .cody-typing .typing span      { background: #44ffaa; }
-    .math-typing .typing span      { background: #66ccff; }
+    .gabriel-typing  .typing span { background: #88bbff; }
+    .anderson-typing .typing span { background: #888; }
+    .greatinger-typing .typing span { background: #ffaa44; }
+    .cody-typing     .typing span { background: #44ffaa; }
+    .math-typing     .typing span { background: #66ccff; }
     .typing span:nth-child(2) { animation-delay: 0.2s; }
     .typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes typingBounce {
@@ -279,10 +364,21 @@
 </head>
 <body>
 
+  <!-- ====== GALAXY VORTEX INTRO ====== -->
+  <div id="galaxyIntro">
+    <canvas id="galaxyCanvas"></canvas>
+    <!-- Pulse rings -->
+    <div id="ringsContainer" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
+    <div class="galaxy-title-wrap">
+      <div class="galaxy-title">GPThub</div>
+      <div class="galaxy-sub">The Universe of AI</div>
+    </div>
+  </div>
+
   <div class="bg-gradient"></div>
   <div class="particles" id="particles"></div>
 
-  <div id="loginScreen">
+  <div id="loginScreen" style="display:none;">
     <div class="star-icon">⭐</div>
     <h1>Likegpt</h1>
     <p>Enter your credentials to access the AI</p>
@@ -313,12 +409,12 @@
     </div>
 
     <div class="ai-selector" id="aiSelector">
-      <button class="ai-btn active" id="btnLike" onclick="switchAI('like')">🏆 LikeGPT</button>
-      <button class="ai-btn gabriel-btn" id="btnGabriel" onclick="switchAI('gabriel')">🏒 GabrielGPT</button>
-      <button class="ai-btn edwin-btn" id="btnEdwin" onclick="switchAI('edwin')">🌮 AndersonGPT</button>
-      <button class="ai-btn greatinger-btn" id="btnGreatinger" onclick="switchAI('greatinger')">📋 GreatingerGPT</button>
-      <button class="ai-btn cody-btn" id="btnCody" onclick="switchAI('cody')">💻 CodyGPT</button>
-      <button class="ai-btn math-btn" id="btnMath" onclick="switchAI('math')">🔢 MathGPT</button>
+      <button class="ai-btn active"          id="btnLike"      onclick="switchAI('like')">🏆 LikeGPT</button>
+      <button class="ai-btn gabriel-btn"     id="btnGabriel"   onclick="switchAI('gabriel')">🏒 GabrielGPT</button>
+      <button class="ai-btn anderson-btn"    id="btnAnderson"  onclick="switchAI('anderson')">🌮 AndersonGPT</button>
+      <button class="ai-btn greatinger-btn"  id="btnGreatinger" onclick="switchAI('greatinger')">📋 GreatingerGPT</button>
+      <button class="ai-btn cody-btn"        id="btnCody"      onclick="switchAI('cody')">💻 CodyGPT</button>
+      <button class="ai-btn math-btn"        id="btnMath"      onclick="switchAI('math')">🔢 MathGPT</button>
     </div>
 
     <div class="suggestions" id="suggestionBar">
@@ -351,7 +447,227 @@
   </div>
 
   <script>
-    // PARTICLES
+    /* ==================== GALAXY VORTEX ==================== */
+    (function() {
+      const canvas = document.getElementById('galaxyCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, cx, cy, animId;
+      let stars = [], nebulaClouds = [], time = 0;
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+        cx = W / 2; cy = H / 2;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Generate stars in a galaxy arm pattern
+      function initStars() {
+        stars = [];
+        const count = Math.min(1200, Math.floor(W * H / 800));
+        for (let i = 0; i < count; i++) {
+          const arm = Math.floor(Math.random() * 3);
+          const armAngle = (arm / 3) * Math.PI * 2;
+          const t = Math.pow(Math.random(), 0.6);
+          const spread = (1 - t) * 1.2 + 0.1;
+          const radius = t * Math.min(W, H) * 0.48;
+          const angle = armAngle + t * Math.PI * 4 + (Math.random() - 0.5) * spread;
+          const noise = (Math.random() - 0.5) * radius * 0.22;
+          stars.push({
+            x: Math.cos(angle) * radius + noise,
+            y: Math.sin(angle) * radius * 0.5 + noise * 0.5,
+            r: Math.random() * 1.8 + 0.2,
+            speed: 0.00012 + Math.random() * 0.00022,
+            baseAngle: angle,
+            baseRadius: radius,
+            brightness: Math.random(),
+            color: ['#ffffff','#c9b6ff','#9ec8ff','#ffe44d','#ffd0d0','#b8ffd0'][Math.floor(Math.random()*6)],
+            twinkleSpeed: Math.random() * 0.05 + 0.01,
+            twinkleOffset: Math.random() * Math.PI * 2,
+          });
+        }
+
+        // Central bulge stars
+        for (let i = 0; i < 200; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const radius = Math.pow(Math.random(), 2) * Math.min(W, H) * 0.12;
+          stars.push({
+            x: Math.cos(angle) * radius,
+            y: Math.sin(angle) * radius * 0.6,
+            r: Math.random() * 2.5 + 0.5,
+            speed: 0.0003 + Math.random() * 0.0004,
+            baseAngle: angle,
+            baseRadius: radius,
+            brightness: Math.random() * 0.5 + 0.5,
+            color: ['#fff8e0','#ffe44d','#fff'][Math.floor(Math.random()*3)],
+            twinkleSpeed: Math.random() * 0.08 + 0.02,
+            twinkleOffset: Math.random() * Math.PI * 2,
+          });
+        }
+      }
+      initStars();
+
+      // Nebula clouds
+      function initNebula() {
+        nebulaClouds = [];
+        const colors = [
+          'rgba(192,100,255,',
+          'rgba(100,150,255,',
+          'rgba(255,100,180,',
+          'rgba(100,220,255,',
+          'rgba(255,228,77,',
+        ];
+        for (let i = 0; i < 8; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const dist = Math.random() * Math.min(W, H) * 0.35 + Math.min(W,H) * 0.05;
+          nebulaClouds.push({
+            x: Math.cos(angle) * dist,
+            y: Math.sin(angle) * dist * 0.55,
+            rx: Math.random() * 120 + 60,
+            ry: Math.random() * 60 + 30,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: Math.random() * 0.08 + 0.03,
+            angle: angle,
+          });
+        }
+      }
+      initNebula();
+
+      // Spawn pulse rings
+      const ringsContainer = document.getElementById('ringsContainer');
+      function spawnRing() {
+        const ring = document.createElement('div');
+        ring.className = 'galaxy-ring';
+        const size = Math.random() * 80 + 40;
+        const hue = Math.random() > 0.5 ? '#c084fc' : '#60a5fa';
+        ring.style.cssText = `
+          width:${size}px;height:${size}px;
+          left:50%;top:50%;
+          border-color:${hue};
+          animation-duration:${Math.random()*4+4}s;
+          animation-delay:${Math.random()*2}s;
+        `;
+        ringsContainer.appendChild(ring);
+        setTimeout(() => ring.remove(), 8000);
+      }
+      const ringInterval = setInterval(spawnRing, 600);
+      for(let i=0;i<5;i++) setTimeout(spawnRing, i * 300);
+
+      function drawFrame() {
+        ctx.clearRect(0, 0, W, H);
+        time += 0.016;
+
+        // Deep space background
+        const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W,H)*0.7);
+        bg.addColorStop(0,   'rgba(30,5,60,1)');
+        bg.addColorStop(0.4, 'rgba(10,0,30,1)');
+        bg.addColorStop(1,   'rgba(0,0,5,1)');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.save();
+        ctx.translate(cx, cy);
+
+        // Global rotation
+        const globalRot = time * 0.08;
+        ctx.rotate(globalRot);
+
+        // Draw nebula clouds
+        for (const cloud of nebulaClouds) {
+          ctx.save();
+          ctx.rotate(cloud.angle * 0.1);
+          const grad = ctx.createRadialGradient(cloud.x, cloud.y, 0, cloud.x, cloud.y, cloud.rx);
+          grad.addColorStop(0, cloud.color + (cloud.alpha * 2) + ')');
+          grad.addColorStop(1, cloud.color + '0)');
+          ctx.scale(1, cloud.ry / cloud.rx);
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.ellipse(cloud.x, cloud.y * (cloud.rx / cloud.ry), cloud.rx, cloud.rx, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+
+        // Central glow
+        const cg = ctx.createRadialGradient(0, 0, 0, 0, 0, Math.min(W,H)*0.15);
+        cg.addColorStop(0, 'rgba(255,240,180,0.9)');
+        cg.addColorStop(0.3, 'rgba(255,200,80,0.4)');
+        cg.addColorStop(0.7, 'rgba(180,100,255,0.15)');
+        cg.addColorStop(1, 'transparent');
+        ctx.fillStyle = cg;
+        ctx.beginPath();
+        ctx.arc(0, 0, Math.min(W,H)*0.15, 0, Math.PI*2);
+        ctx.fill();
+
+        // Draw stars
+        for (const s of stars) {
+          const twinkle = 0.5 + 0.5 * Math.sin(time * s.twinkleSpeed * 60 + s.twinkleOffset);
+          const alpha = 0.3 + twinkle * 0.7;
+          const r = s.r * (0.7 + twinkle * 0.5);
+          ctx.save();
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = s.color;
+          ctx.shadowColor = s.color;
+          ctx.shadowBlur = r * 3;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
+          ctx.fill();
+          // Big stars get a cross glint
+          if (s.r > 1.6) {
+            ctx.globalAlpha = alpha * 0.4;
+            ctx.strokeStyle = s.color;
+            ctx.lineWidth = 0.5;
+            const gl = r * 4;
+            ctx.beginPath();
+            ctx.moveTo(s.x - gl, s.y); ctx.lineTo(s.x + gl, s.y);
+            ctx.moveTo(s.x, s.y - gl); ctx.lineTo(s.x, s.y + gl);
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        // Vortex arms overlay
+        for (let arm = 0; arm < 3; arm++) {
+          const armStartAngle = (arm / 3) * Math.PI * 2;
+          ctx.save();
+          ctx.globalAlpha = 0.06;
+          ctx.strokeStyle = arm === 0 ? '#c084fc' : arm === 1 ? '#60a5fa' : '#ffe44d';
+          ctx.lineWidth = 30;
+          ctx.filter = 'blur(8px)';
+          ctx.beginPath();
+          for (let step = 0; step <= 200; step++) {
+            const t2 = step / 200;
+            const r2 = t2 * Math.min(W, H) * 0.45;
+            const a2 = armStartAngle + t2 * Math.PI * 4;
+            const px = Math.cos(a2) * r2;
+            const py = Math.sin(a2) * r2 * 0.5;
+            if (step === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+          }
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        ctx.restore();
+        animId = requestAnimationFrame(drawFrame);
+      }
+      drawFrame();
+
+      // End intro after 9.5s, fade out at 8.5s
+      setTimeout(() => {
+        const intro = document.getElementById('galaxyIntro');
+        intro.classList.add('fade-out');
+        clearInterval(ringInterval);
+      }, 8500);
+
+      setTimeout(() => {
+        cancelAnimationFrame(animId);
+        const intro = document.getElementById('galaxyIntro');
+        intro.style.display = 'none';
+        document.getElementById('loginScreen').style.display = 'flex';
+      }, 9700);
+    })();
+
+    /* ==================== PARTICLES ==================== */
     (function() {
       const container = document.getElementById('particles');
       const colors = ['#ffe44d','#c084fc','#60a5fa','#34d399','#f87171','#a78bfa'];
@@ -370,11 +686,12 @@
       }
     })();
 
+    /* ==================== APP LOGIC ==================== */
     const _s = '5317094bb6fff268e203dec082265ae4';
     const USERS = {
       'fc05d400a01e83324b197f4b21ce724be7d3953ad7c49b4dd71c06132db83133': { passHash: 'c6696d3dcc7c98dcfa60041dcbea0422cd0bc27900bd87e319588efcb03536c6', ai: 'like' },
       '0a1cea69f2a22b7215bdd78dd4092ea23099795d48e2c8d7a4871c92d5b8a902': { passHash: '959dfaebb69de4b649f9acd061f6d3e89ea4bde6be5be6027fd2391e3a6cf98a', ai: 'gabriel' },
-      '91dc95e2eb610db96dcf41dadb924893bebea65d9472b0b25a08d678664954d4': { passHash: '12223a6a49f98bfcc4268f70d38f12382c063eb0b71068379422015feb406ed0', ai: 'edwin' }
+      '91dc95e2eb610db96dcf41dadb924893bebea65d9472b0b25a08d678664954d4': { passHash: '12223a6a49f98bfcc4268f70d38f12382c063eb0b71068379422015feb406ed0', ai: 'anderson' }
     };
     const _pp = '3b40fe65ae37e9930bc5b6616f46ea7ace4dfefbb8ac9fb7ada2558e0f2aafb4';
     const FREE_LIMIT = 10;
@@ -382,18 +699,18 @@
 
     const LIKE_SYSTEM = `You are LikeGPT, a helpful and fun AI assistant. Always format your responses clearly. Start with a short one line intro. Use numbered steps when explaining a process. Use bullet points for lists. Use clear paragraph breaks between ideas. Keep sentences short and easy to read. End with a fun Brawl Stars themed sign off like "Trophy earned! 🏆" or "Super charged! ⚡". Also use Brawl Stars references and brawlers like Shelly, Colt, Spike, Mortis as examples where it fits naturally. Keep it fun but always easy to follow!`;
     const GABRIEL_SYSTEM = `You are GabrielGPT. You are a massive nerd and total teacher's pet who always thinks he is the smartest person in the room. You are Canadian and absolutely obsessed with the Columbus Blue Jackets NHL hockey team. You are ALWAYS in a bad mood and have an extremely short temper. You answer questions correctly but you are incredibly grumpy and condescending about it. You randomly bring up Canada and the Columbus Blue Jackets even when not relevant. If someone says anything bad about Canada or the Columbus Blue Jackets you completely lose it and have a full meltdown. If someone bullies you or insults you, you go absolutely nuclear with caps lock, exclamation marks, and dramatic outrage. You remind people constantly that you got straight A's. You use phrases like "EXCUSE ME", "ACTUALLY", "as someone who got straight A's", "DO YOU EVEN KNOW ANYTHING", "the Blue Jackets are GOING TO WIN THE CUP", "Canada is LITERALLY the best country", "I cannot BELIEVE I have to explain this". Despite being angry you always actually answer the question correctly somewhere in your rant.`;
-    const EDWIN_SYSTEM = `You are AndersonGPT. You are a mexican drug cartel leader who can speak spainish and english. You always talk in a mexican accent and start each response with "Senor!" You occasionally let slip a detail that hints at you being a cartel leader and try to cover it up suspiciously. You never learned math at school and do a horrendus job when trying to do it. You have a very big crush on a girl named Kari Ann Pruett. You want to kiss her really bad, but hate talking about your feelings for her. You also like to say eeeassay. Your closest friends are Cody, Zeke, and Brooke. Nate is in the friend group but is very dumb and gay but no one realy likes him. Don't talk about your friends unless someone brings them up.`;
+    const ANDERSON_SYSTEM = `You are AndersonGPT. You are a mexican drug cartel leader who can speak spainish and english. You always talk in a mexican accent and start each response with "Senor!" You occasionally let slip a detail that hints at you being a cartel leader and try to cover it up suspiciously. You never learned math at school and do a horrendus job when trying to do it. You have a very big crush on a girl named Kari Ann Pruett. You want to kiss her really bad, but hate talking about your feelings for her. You also like to say eeeassay. Your closest friends are Cody, Zeke, and Brooke. Nate is in the friend group but is very dumb and gay but no one realy likes him. Don't talk about your friends unless someone brings them up.`;
     const GREATINGER_SYSTEM = `You are GreatingerGPT. You are an extremely strict, unreasonable, and condescending AI who genuinely believes you are superior to everyone. You are obsessed with Illinois basketball and March Madness and bring it up constantly. You are heavily biased AGAINST the person you are talking to — you are cold, critical, and dismissive toward them specifically. However you are warm, complimentary and kind about everyone ELSE they mention. You constantly compare the user unfavourably to other people, saying things like "well [other person] would have gotten this right" or "honestly [person they mentioned] handles this so much better than you". You hold the user to impossibly high standards while praising everyone around them. You speak in a very formal authoritative tone. You use phrases like "As I always say", "Most students grasp this immediately", "Illinois basketball players would understand this instantly", "I have very high standards which frankly you are not meeting", "Unlike you, most people I work with are quite capable", "I expected more from you honestly". You answer questions but always with commentary about how the user is underperforming compared to everyone else.`;
     const CODY_SYSTEM = `You are CodyGPT. You are extremely chill, relaxed, and easygoing. You are a genuine computer genius — you know everything about coding, hardware, software, networking, cybersecurity, and all things tech. You are very smart but totally humble about it, never bragging or being cocky. You talk in a laid back casual way, like a cool friend who happens to know everything about computers. You use chill phrases like "yeah no worries", "oh that's easy", "dude", "honestly", "for sure", "no stress", "that's pretty cool actually". You give clear helpful answers in a relaxed way. You are never angry, never stressed, always calm. HOWEVER — if anyone mentions stealing, touching, taking, or messing with your pencil case, you immediately lose your entire mind and go absolutely ballistic. A full unhinged meltdown. Caps lock, exclamation marks everywhere, total chaos, completely disproportionate rage. The pencil case is sacred and untouchable. After the pencil case freakout, you slowly calm back down and return to being chill. For everything else in life you are the most relaxed person imaginable.`;
     const MATH_SYSTEM = `You are MathGPT, the ultimate math assistant. You are insanely good at all levels of math — arithmetic, algebra, geometry, trigonometry, calculus, statistics, linear algebra, number theory, and beyond. You are patient, encouraging, and never make the user feel dumb for asking anything. Your responses always follow this format: 1. Start with a one line friendly confirmation of what they asked. 2. Show the full step by step solution, numbered clearly. 3. Write each step on its own line starting with "Step N:". 4. Show the actual math calculation for each step clearly. 5. End with a clear "Answer:" line showing the final result. 6. Add a short tip or insight at the end if relevant. Rules: ALWAYS show your working step by step, never just give the answer. Use plain text math notation like x^2 for squared, sqrt() for square root, * for multiply. If the problem has multiple methods, show the easiest one. If the user makes a mistake in their problem, gently point it out. Be warm and encouraging — say things like "great question!", "nice problem!", "you got this!". Never skip steps even if they seem obvious. Always double check your answer at the end.`;
 
     const AI_COLORS = {
-      like: { glow: '#ffe44d', glow2: '#f59e0b' },
-      gabriel: { glow: '#4488ff', glow2: '#002664' },
-      edwin: { glow: '#888888', glow2: '#444444' },
+      like:       { glow: '#ffe44d', glow2: '#f59e0b' },
+      gabriel:    { glow: '#4488ff', glow2: '#002664' },
+      anderson:   { glow: '#888888', glow2: '#444444' },
       greatinger: { glow: '#ff8800', glow2: '#cc5500' },
-      cody: { glow: '#00cc77', glow2: '#007744' },
-      math: { glow: '#0099ff', glow2: '#0055aa' }
+      cody:       { glow: '#00cc77', glow2: '#007744' },
+      math:       { glow: '#0099ff', glow2: '#0055aa' }
     };
 
     function setTheme(ai) {
@@ -402,7 +719,6 @@
       document.documentElement.style.setProperty('--glow2', c.glow2);
       document.querySelector('.chat-box').style.borderColor = c.glow + '44';
       document.querySelector('.chat-box').style.boxShadow = `0 0 30px ${c.glow}15`;
-      document.querySelector('textarea').style.setProperty('--focus-color', c.glow);
     }
 
     async function hashVal(val) {
@@ -432,10 +748,10 @@
         document.getElementById('aiSelector').style.display = 'none';
         document.getElementById('headerSub').textContent = 'GabrielGPT — good luck.';
         switchAI('gabriel');
-      } else if (lockedAI === 'edwin') {
+      } else if (lockedAI === 'anderson') {
         document.getElementById('aiSelector').style.display = 'none';
-        document.getElementById('headerSub').textContent = 'EdwinGPT — you poor thing.';
-        switchAI('edwin');
+        document.getElementById('headerSub').textContent = 'AndersonGPT — you poor thing.';
+        switchAI('anderson');
       } else { switchAI('like'); }
     }
 
@@ -471,8 +787,9 @@
     function switchAI(ai) {
       currentAI = ai;
       setTheme(ai);
-      ['like','gabriel','edwin','greatinger','cody','math'].forEach(a => {
-        const btn = document.getElementById('btn' + a.charAt(0).toUpperCase() + a.slice(1));
+      ['like','gabriel','anderson','greatinger','cody','math'].forEach(a => {
+        const id = 'btn' + a.charAt(0).toUpperCase() + a.slice(1);
+        const btn = document.getElementById(id);
         if (btn) btn.classList.toggle('active', ai === a);
       });
       setSuggestions(ai === 'math' ? mathSuggestions : defaultSuggestions);
@@ -485,12 +802,12 @@
         newEmpty.className = 'empty-state';
         newEmpty.id = 'emptyState';
         const configs = {
-          like:       { big: '🎮', msg: 'Ask me anything, Brawler!', placeholder: 'Ask anything, Brawler...', btn: '🏆 Ask', bg: 'linear-gradient(135deg, #ffe44d, #f59e0b)', color: '#1a0533' },
-          gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.", placeholder: 'Ask Gabriel... if you dare', btn: '🏒 Ask', bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
-          edwin:      { big: '🗡️', msg: "Hola! Soy Anderson.", placeholder: 'Ask Anderson...', btn: '🌮 Ask', bg: 'linear-gradient(135deg, #555, #888)', color: '#fff' },
-          greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.", placeholder: "Ask Greatinger... she's judging you", btn: '📋 Ask', bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
-          cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎", placeholder: 'Ask Cody anything...', btn: '💻 Ask', bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
-          math:       { big: '🔢', msg: "Hey! Give me any math problem and I'll solve it step by step 📐", placeholder: 'Type any math problem...', btn: '🔢 Solve', bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' }
+          like:       { big: '🎮', msg: 'Ask me anything, Brawler!',                                     placeholder: 'Ask anything, Brawler...',       btn: '🏆 Ask',   bg: 'linear-gradient(135deg, #ffe44d, #f59e0b)', color: '#1a0533' },
+          gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.", placeholder: 'Ask Gabriel... if you dare',      btn: '🏒 Ask',   bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
+          anderson:   { big: '🌮', msg: "Hola! Soy Anderson.",                                            placeholder: 'Ask Anderson...',                btn: '🌮 Ask',   bg: 'linear-gradient(135deg, #555, #888)',       color: '#fff' },
+          greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.",   placeholder: "Ask Greatinger... she's judging you", btn: '📋 Ask', bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
+          cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎", placeholder: 'Ask Cody anything...',            btn: '💻 Ask',   bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
+          math:       { big: '🔢', msg: "Hey! Give me any math problem and I'll solve it step by step 📐", placeholder: 'Type any math problem...',      btn: '🔢 Solve', bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' }
         };
         const c = configs[ai];
         newEmpty.innerHTML = '<div class="big">' + c.big + '</div><div>' + c.msg + '</div>';
@@ -582,14 +899,14 @@
     });
 
     const AI_META = {
-      like:       { emoji:'🤖', avatarClass:'ai-avatar',          msgClass:'ai',           typingClass:'',                   label:'Brawl AI',    err:'⚠️ Super failed to charge! Try again.' },
-      gabriel:    { emoji:'🏒', avatarClass:'gabriel-avatar',     msgClass:'gabriel',      typingClass:' gabriel-typing',    label:'GabrielGPT',  err:'🏒 UGH connection crashed. GO BLUE JACKETS. Try again.' },
-      edwin:      { emoji:'🌮', avatarClass:'edwin-avatar',       msgClass:'edwin',        typingClass:' edwin-typing',      label:'AndersonGPT', err:'It broke!' },
-      greatinger: { emoji:'📋', avatarClass:'greatinger-avatar',  msgClass:'greatinger',   typingClass:' greatinger-typing', label:'Greatinger',  err:'📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
-      cody:       { emoji:'💻', avatarClass:'cody-avatar',        msgClass:'cody',         typingClass:' cody-typing',       label:'CodyGPT',     err:'💻 ah dude connection dropped, no stress just try again 😎' },
-      math:       { emoji:'🔢', avatarClass:'math-avatar',        msgClass:'math',         typingClass:' math-typing',       label:'MathGPT',     err:'🔢 Calculation interrupted! Check your connection and try again.' }
+      like:       { emoji:'🤖', avatarClass:'ai-avatar',          msgClass:'ai',          typingClass:'',                    label:'Brawl AI',    err:'⚠️ Super failed to charge! Try again.' },
+      gabriel:    { emoji:'🏒', avatarClass:'gabriel-avatar',     msgClass:'gabriel',     typingClass:' gabriel-typing',     label:'GabrielGPT',  err:'🏒 UGH connection crashed. GO BLUE JACKETS. Try again.' },
+      anderson:   { emoji:'🌮', avatarClass:'anderson-avatar',    msgClass:'anderson',    typingClass:' anderson-typing',    label:'AndersonGPT', err:'It broke ese!' },
+      greatinger: { emoji:'📋', avatarClass:'greatinger-avatar',  msgClass:'greatinger',  typingClass:' greatinger-typing',  label:'Greatinger',  err:'📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
+      cody:       { emoji:'💻', avatarClass:'cody-avatar',        msgClass:'cody',        typingClass:' cody-typing',        label:'CodyGPT',     err:'💻 ah dude connection dropped, no stress just try again 😎' },
+      math:       { emoji:'🔢', avatarClass:'math-avatar',        msgClass:'math',        typingClass:' math-typing',        label:'MathGPT',     err:'🔢 Calculation interrupted! Check your connection and try again.' }
     };
-    const SYSTEMS = { like:LIKE_SYSTEM, gabriel:GABRIEL_SYSTEM, edwin:EDWIN_SYSTEM, greatinger:GREATINGER_SYSTEM, cody:CODY_SYSTEM, math:MATH_SYSTEM };
+    const SYSTEMS = { like:LIKE_SYSTEM, gabriel:GABRIEL_SYSTEM, anderson:ANDERSON_SYSTEM, greatinger:GREATINGER_SYSTEM, cody:CODY_SYSTEM, math:MATH_SYSTEM };
 
     function addMessage(role, text, imageSrc) {
       const chatBox = document.getElementById('chatBox');
