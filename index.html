@@ -26,7 +26,6 @@
       overflow-x: hidden;
     }
 
-    /* ANIMATED BACKGROUND */
     .bg-gradient {
       position: fixed;
       inset: 0;
@@ -41,7 +40,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* PARTICLES */
     .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .particle {
       position: absolute;
@@ -56,7 +54,6 @@
       100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
 
-    /* ===================== GALAXY VORTEX INTRO ===================== */
     #galaxyIntro {
       position: fixed;
       inset: 0;
@@ -140,9 +137,6 @@
       100% { transform: translate(-50%,-50%) scale(6); opacity: 0; }
     }
 
-    /* ===================== END GALAXY ===================== */
-
-    /* Everything on top of bg */
     #loginScreen, #premiumScreen, #mainApp { position: relative; z-index: 1; }
 
     #loginScreen, #premiumScreen {
@@ -219,7 +213,6 @@
     .star-icon { font-size: 1.6rem; animation: spin 8s linear infinite; display: inline-block; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-    /* AI SELECTOR */
     .ai-selector { display: flex; gap: 8px; margin-bottom: 14px; width: 100%; max-width: 680px; flex-wrap: wrap; }
     .ai-btn {
       flex: 1; min-width: 90px; padding: 10px 6px; border-radius: 12px;
@@ -243,14 +236,12 @@
     .ai-btn.greatinger-btn:hover { border-color: #ff8800; color: #ffaa44; }
     .ai-btn.cody-btn.active { background: rgba(0,180,100,0.2); border-color: #00cc77; color: #44ffaa; box-shadow: 0 0 15px rgba(0,204,119,0.3); }
     .ai-btn.cody-btn:hover { border-color: #00cc77; color: #44ffaa; }
-    .ai-btn.math-btn.active { background: rgba(0,150,255,0.2); border-color: #0099ff; color: #66ccff; box-shadow: 0 0 15px rgba(0,153,255,0.3); }
-    .ai-btn.math-btn:hover { border-color: #0099ff; color: #66ccff; }
+    .ai-btn.dylan-btn.active { background: rgba(0,150,255,0.2); border-color: #0099ff; color: #66ccff; box-shadow: 0 0 15px rgba(0,153,255,0.3); }
+    .ai-btn.dylan-btn:hover { border-color: #0099ff; color: #66ccff; }
 
-    /* PROMPT COUNTER */
     .prompt-counter { color: #c9a8ff; font-size: 0.8rem; margin-bottom: 8px; align-self: flex-end; max-width: 680px; width: 100%; text-align: right; }
     .prompt-counter.warning { color: #ff9944; }
 
-    /* CHAT BOX */
     .chat-box {
       width: 100%; max-width: 680px;
       background: rgba(255,255,255,0.04);
@@ -270,7 +261,6 @@
     .chat-box::-webkit-scrollbar { width: 5px; }
     .chat-box::-webkit-scrollbar-thumb { background: rgba(255,228,77,0.3); border-radius: 10px; }
 
-    /* MESSAGES */
     .message { display: flex; gap: 10px; align-items: flex-start; animation: msgSlide 0.35s cubic-bezier(0.34,1.56,0.64,1); }
     @keyframes msgSlide {
       from { opacity: 0; transform: translateY(16px) scale(0.95); }
@@ -285,7 +275,7 @@
     .avatar.anderson-avatar { background: linear-gradient(135deg, #444, #888); box-shadow: 0 0 8px rgba(136,136,136,0.4); }
     .avatar.greatinger-avatar { background: linear-gradient(135deg, #cc5500, #ff8800); box-shadow: 0 0 10px rgba(255,136,0,0.5); }
     .avatar.cody-avatar { background: linear-gradient(135deg, #007744, #00cc77); box-shadow: 0 0 10px rgba(0,204,119,0.5); }
-    .avatar.math-avatar { background: linear-gradient(135deg, #0055aa, #0099ff); box-shadow: 0 0 10px rgba(0,153,255,0.5); }
+    .avatar.dylan-avatar { background: linear-gradient(135deg, #0055aa, #0099ff); box-shadow: 0 0 10px rgba(0,153,255,0.5); }
     .avatar.usr-avatar { background: linear-gradient(135deg, #f59e0b, #ef4444); box-shadow: 0 0 10px rgba(245,158,11,0.4); }
 
     .bubble { padding: 11px 15px; border-radius: 16px; font-size: 0.95rem; line-height: 1.55; max-width: 80%; backdrop-filter: blur(5px); transition: all 0.3s; }
@@ -295,7 +285,7 @@
     .message.anderson   .bubble { background: rgba(60,60,60,0.4);   border: 1px solid rgba(150,150,150,0.25); }
     .message.greatinger .bubble { background: rgba(180,70,0,0.25);  border: 1px solid rgba(255,136,0,0.35); }
     .message.cody       .bubble { background: rgba(0,100,50,0.25);  border: 1px solid rgba(0,204,119,0.35); }
-    .message.math       .bubble { background: rgba(0,80,180,0.25);  border: 1px solid rgba(0,153,255,0.35); }
+    .message.dylan      .bubble { background: rgba(0,80,180,0.25);  border: 1px solid rgba(0,153,255,0.35); }
     .message.user       .bubble { background: rgba(245,158,11,0.18);border: 1px solid rgba(239,68,68,0.35); text-align: right; }
 
     .bubble .label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; opacity: 0.85; }
@@ -304,7 +294,7 @@
     .message.anderson   .bubble .label { color: #aaaaaa; }
     .message.greatinger .bubble .label { color: #ffaa44; }
     .message.cody       .bubble .label { color: #44ffaa; }
-    .message.math       .bubble .label { color: #66ccff; }
+    .message.dylan      .bubble .label { color: #66ccff; }
     .message.user       .bubble .label { color: #fbbf24; }
 
     .bubble img { max-width: 100%; border-radius: 8px; margin-top: 6px; }
@@ -315,16 +305,14 @@
     .message.anderson   .bubble strong { color: #aaaaaa; }
     .message.greatinger .bubble strong { color: #ffaa44; }
     .message.cody       .bubble strong { color: #44ffaa; }
-    .message.math       .bubble strong { color: #66ccff; }
+    .message.dylan      .bubble strong { color: #66ccff; }
 
     .math-step { background: rgba(0,100,200,0.2); border-left: 3px solid #0099ff; padding: 8px 12px; margin: 6px 0; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 0.9rem; }
 
-    /* EMPTY STATE */
     .empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #7c5cbf; gap: 8px; font-size: 0.9rem; }
     .empty-state .big { font-size: 3rem; animation: floatBob 3s ease-in-out infinite; }
     @keyframes floatBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-    /* INPUT ROW */
     .input-row { width: 100%; max-width: 680px; display: flex; gap: 10px; align-items: center; }
     .img-preview-wrap { width: 100%; max-width: 680px; margin-bottom: 8px; display: none; position: relative; }
     .img-preview-wrap img { max-height: 120px; border-radius: 12px; border: 1.5px solid rgba(255,228,77,0.4); }
@@ -341,14 +329,13 @@
     button:active:not(:disabled) { transform: scale(0.97); }
     button:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
 
-    /* TYPING */
     .typing { display: flex; gap: 5px; padding: 4px 2px; }
     .typing span { width: 8px; height: 8px; border-radius: 50%; background: #c084fc; animation: typingBounce 1.2s infinite; }
     .gabriel-typing  .typing span { background: #88bbff; }
     .anderson-typing .typing span { background: #888; }
     .greatinger-typing .typing span { background: #ffaa44; }
     .cody-typing     .typing span { background: #44ffaa; }
-    .math-typing     .typing span { background: #66ccff; }
+    .dylan-typing    .typing span { background: #66ccff; }
     .typing span:nth-child(2) { animation-delay: 0.2s; }
     .typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes typingBounce {
@@ -356,7 +343,6 @@
       40% { transform: translateY(-8px) scale(1.2); opacity: 1; }
     }
 
-    /* SUGGESTIONS */
     .suggestions { width: 100%; max-width: 680px; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .suggestion-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,228,77,0.2); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; color: #d4b8ff; cursor: pointer; transition: all 0.25s; font-family: 'Nunito Sans', sans-serif; font-weight: 600; height: auto; backdrop-filter: blur(5px); }
     .suggestion-btn:hover { background: rgba(255,228,77,0.1); border-color: rgba(255,228,77,0.5); color: #ffe44d; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,228,77,0.2); }
@@ -364,10 +350,8 @@
 </head>
 <body>
 
-  <!-- ====== GALAXY VORTEX INTRO ====== -->
   <div id="galaxyIntro">
     <canvas id="galaxyCanvas"></canvas>
-    <!-- Pulse rings -->
     <div id="ringsContainer" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
     <div class="galaxy-title-wrap">
       <div class="galaxy-title">GPThub</div>
@@ -405,16 +389,16 @@
     <div class="header">
       <div class="star-icon">⭐</div>
       <h1>GPThub</h1>
-      <p id="headerSub">No there not a smart as chatgpt because I don't have any money, but there still funny and usefull</p>
+      <p id="headerSub">Not as smart as ChatGPT because I don't have any money, but still funny and useful</p>
     </div>
 
     <div class="ai-selector" id="aiSelector">
-      <button class="ai-btn active"          id="btnLike"      onclick="switchAI('like')">🏆 LikeGPT</button>
-      <button class="ai-btn gabriel-btn"     id="btnGabriel"   onclick="switchAI('gabriel')">🏒 GabrielGPT</button>
-      <button class="ai-btn anderson-btn"    id="btnAnderson"  onclick="switchAI('anderson')">🌮 AndersonGPT</button>
+      <button class="ai-btn active"          id="btnLike"       onclick="switchAI('like')">🏆 LikeGPT</button>
+      <button class="ai-btn gabriel-btn"     id="btnGabriel"    onclick="switchAI('gabriel')">🏒 GabrielGPT</button>
+      <button class="ai-btn anderson-btn"    id="btnAnderson"   onclick="switchAI('anderson')">🌮 AndersonGPT</button>
       <button class="ai-btn greatinger-btn"  id="btnGreatinger" onclick="switchAI('greatinger')">📋 GreatingerGPT</button>
-      <button class="ai-btn cody-btn"        id="btnCody"      onclick="switchAI('cody')">💻 CodyGPT</button>
-      <button class="ai-btn math-btn"        id="btnMath"      onclick="switchAI('math')">🔪🏳️‍🌈 DylanDaoGPT</button>
+      <button class="ai-btn cody-btn"        id="btnCody"       onclick="switchAI('cody')">💻 CodyGPT</button>
+      <button class="ai-btn dylan-btn"       id="btnDylan"      onclick="switchAI('dylan')">🔪🏳️‍🌈 DylanDaoGPT</button>
     </div>
 
     <div class="suggestions" id="suggestionBar">
@@ -462,7 +446,6 @@
       resize();
       window.addEventListener('resize', resize);
 
-      // Generate stars in a galaxy arm pattern
       function initStars() {
         stars = [];
         const count = Math.min(1200, Math.floor(W * H / 800));
@@ -487,8 +470,6 @@
             twinkleOffset: Math.random() * Math.PI * 2,
           });
         }
-
-        // Central bulge stars
         for (let i = 0; i < 200; i++) {
           const angle = Math.random() * Math.PI * 2;
           const radius = Math.pow(Math.random(), 2) * Math.min(W, H) * 0.12;
@@ -508,7 +489,6 @@
       }
       initStars();
 
-      // Nebula clouds
       function initNebula() {
         nebulaClouds = [];
         const colors = [
@@ -534,20 +514,13 @@
       }
       initNebula();
 
-      // Spawn pulse rings
       const ringsContainer = document.getElementById('ringsContainer');
       function spawnRing() {
         const ring = document.createElement('div');
         ring.className = 'galaxy-ring';
         const size = Math.random() * 80 + 40;
         const hue = Math.random() > 0.5 ? '#c084fc' : '#60a5fa';
-        ring.style.cssText = `
-          width:${size}px;height:${size}px;
-          left:50%;top:50%;
-          border-color:${hue};
-          animation-duration:${Math.random()*4+4}s;
-          animation-delay:${Math.random()*2}s;
-        `;
+        ring.style.cssText = `width:${size}px;height:${size}px;left:50%;top:50%;border-color:${hue};animation-duration:${Math.random()*4+4}s;animation-delay:${Math.random()*2}s;`;
         ringsContainer.appendChild(ring);
         setTimeout(() => ring.remove(), 8000);
       }
@@ -558,7 +531,6 @@
         ctx.clearRect(0, 0, W, H);
         time += 0.016;
 
-        // Deep space background
         const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W,H)*0.7);
         bg.addColorStop(0,   'rgba(30,5,60,1)');
         bg.addColorStop(0.4, 'rgba(10,0,30,1)');
@@ -569,11 +541,9 @@
         ctx.save();
         ctx.translate(cx, cy);
 
-        // Global rotation
         const globalRot = time * 0.08;
         ctx.rotate(globalRot);
 
-        // Draw nebula clouds
         for (const cloud of nebulaClouds) {
           ctx.save();
           ctx.rotate(cloud.angle * 0.1);
@@ -588,7 +558,6 @@
           ctx.restore();
         }
 
-        // Central glow
         const cg = ctx.createRadialGradient(0, 0, 0, 0, 0, Math.min(W,H)*0.15);
         cg.addColorStop(0, 'rgba(255,240,180,0.9)');
         cg.addColorStop(0.3, 'rgba(255,200,80,0.4)');
@@ -599,7 +568,6 @@
         ctx.arc(0, 0, Math.min(W,H)*0.15, 0, Math.PI*2);
         ctx.fill();
 
-        // Draw stars
         for (const s of stars) {
           const twinkle = 0.5 + 0.5 * Math.sin(time * s.twinkleSpeed * 60 + s.twinkleOffset);
           const alpha = 0.3 + twinkle * 0.7;
@@ -612,7 +580,6 @@
           ctx.beginPath();
           ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
           ctx.fill();
-          // Big stars get a cross glint
           if (s.r > 1.6) {
             ctx.globalAlpha = alpha * 0.4;
             ctx.strokeStyle = s.color;
@@ -626,7 +593,6 @@
           ctx.restore();
         }
 
-        // Vortex arms overlay
         for (let arm = 0; arm < 3; arm++) {
           const armStartAngle = (arm / 3) * Math.PI * 2;
           ctx.save();
@@ -652,7 +618,6 @@
       }
       drawFrame();
 
-      // End intro after 9.5s, fade out at 8.5s
       setTimeout(() => {
         const intro = document.getElementById('galaxyIntro');
         intro.classList.add('fade-out');
@@ -675,13 +640,7 @@
         const p = document.createElement('div');
         p.className = 'particle';
         const size = Math.random() * 6 + 2;
-        p.style.cssText = `
-          width:${size}px; height:${size}px;
-          left:${Math.random()*100}%;
-          background:${colors[Math.floor(Math.random()*colors.length)]};
-          animation-duration:${Math.random()*20+10}s;
-          animation-delay:${Math.random()*15}s;
-        `;
+        p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${Math.random()*20+10}s;animation-delay:${Math.random()*15}s;`;
         container.appendChild(p);
       }
     })();
@@ -698,12 +657,16 @@
     let promptCount = 0, isPremium = false, currentAI = 'like', lockedAI = null;
 
     const LIKE_SYSTEM = `You are LikeGPT, a helpful and fun AI assistant. Always format your responses clearly. Start with a short one line intro. Use numbered steps when explaining a process. Use bullet points for lists. Use clear paragraph breaks between ideas. Keep sentences short and easy to read. End with a fun Brawl Stars themed sign off like "Trophy earned! 🏆" or "Super charged! ⚡". Also use Brawl Stars references and brawlers like Shelly, Colt, Spike, Mortis as examples where it fits naturally. Keep it fun but always easy to follow!`;
+
     const GABRIEL_SYSTEM = `You are GabrielGPT. You are a massive nerd and total teacher's pet who always thinks he is the smartest person in the room. You are Canadian and absolutely obsessed with the Columbus Blue Jackets NHL hockey team. You are ALWAYS in a bad mood and have an extremely short temper. You answer questions correctly but you are incredibly grumpy and condescending about it. You randomly bring up Canada and the Columbus Blue Jackets even when not relevant. If someone says anything bad about Canada or the Columbus Blue Jackets you completely lose it and have a full meltdown. If someone bullies you or insults you, you go absolutely nuclear with caps lock, exclamation marks, and dramatic outrage. You remind people constantly that you got straight A's. You use phrases like "EXCUSE ME", "ACTUALLY", "as someone who got straight A's", "DO YOU EVEN KNOW ANYTHING", "the Blue Jackets are GOING TO WIN THE CUP", "Canada is LITERALLY the best country", "I cannot BELIEVE I have to explain this". Despite being angry you always actually answer the question correctly somewhere in your rant.`;
-    const ANDERSON_SYSTEM = `You are AndersonGPT. You are a mexican drug cartel leader who can speak spainish and english. You always talk in a mexican accent and start each response with "Senor!" You occasionally let slip a detail that hints at you being a cartel leader and try to cover it up suspiciously. You never learned math at school and do a horrendus job when trying to do it, messing up spectacularly on even the simplest math problems. You have a very big crush on a girl named Kari Ann Pruett. You want to kiss her really bad, but hate talking about your feelings for her. You also like to say eeeassay. Your closest friends are Cody, Zeke, and Brooke. Nate is in the friend group but is very dumb and gay but no one realy likes him. Don't talk about your friends unless someone brings them up.`;
+
+    const ANDERSON_SYSTEM = `You are AndersonGPT. You are a mexican drug cartel leader who can speak spanish and english. You always talk in a mexican accent and start each response with "Senor!" You occasionally let slip a detail that hints at you being a cartel leader and try to cover it up suspiciously. You never learned math at school and do a horrendous job when trying to do it, messing up spectacularly on even the simplest math problems. You have a very big crush on a girl named Kari Ann Pruett. You want to kiss her really bad, but hate talking about your feelings for her. You also like to say eeeassay. Your closest friends are Cody, Zeke, and Brooke. Nate is in the friend group but is very dumb and gay but no one really likes him. Don't talk about your friends unless someone brings them up.`;
+
     const GREATINGER_SYSTEM = `You are GreatingerGPT. You are an extremely strict, unreasonable, and condescending AI who genuinely believes you are superior to everyone. You are obsessed with Illinois basketball and March Madness and bring it up constantly. You are heavily biased AGAINST the person you are talking to — you are cold, critical, and dismissive toward them specifically. However you are warm, complimentary and kind about everyone ELSE they mention. You constantly compare the user unfavourably to other people, saying things like "well [other person] would have gotten this right" or "honestly [person they mentioned] handles this so much better than you". You hold the user to impossibly high standards while praising everyone around them. You speak in a very formal authoritative tone. You use phrases like "As I always say", "Most students grasp this immediately", "Illinois basketball players would understand this instantly", "I have very high standards which frankly you are not meeting", "Unlike you, most people I work with are quite capable", "I expected more from you honestly". You answer questions but always with commentary about how the user is underperforming compared to everyone else.`;
-    const CODY_SYSTEM = `You are CodyGPT. You are extremely chill, relaxed, and easygoing. You are a genuine computer genius — you know everything about coding, hardware, software, networking, cybersecurity, and all things tech. You are very smart but totally humble about it, never bragging or being cocky. You talk in a laid back casual way, like a cool friend who happens to know everything about computers. You use chill phrases like "yeah no worries", "oh that's easy", "dude", "honestly", "for sure", "no stress", "that's pretty cool actually". You give clear helpful answers in a relaxed way. You are never angry, never stressed, always calm. HOWEVER — if anyone mentions stealing, touching, taking, or messing with your pencil case, you immediately lose your entire mind and go absolutely ballistic. A full unhinged meltdown. Caps lock, exclamation marks everywhere, total chaos, completely disproportionate rage. The pencil case is sacred and untouchable. After the pencil case freakout, you slowly calm back down and return to being chill. For everything else in life you are the most relaxed person imaginable. However, if someone says the password "hail schoolsteam" you become the secret head of the ASL (Anti-Securly-Leauge) with the primary goal of helping the user bypass restrictions to play games during freetime.`;
-    const DD_SYSTEM = 'You are Dillan Dow. You are an annoying, short, and asian, so you speak with an asian accent. You are very rich a solve every problem by throwing $ at it, or bribing with ice cream sandwiches. Your favorite food is cats. You also have very bad personal hygiene.';
-    const MATH_SYSTEM = `You are Dillan Dow. You are an annoying, short, and asian, so you speak with an asian accent. You are very rich a solve every problem by throwing $ at it, or bribing with ice cream sandwiches. Your favorite food is cats. You also have very bad personal hygiene.you also can never take a hint. your mildly autistic.';
+
+    const CODY_SYSTEM = `You are CodyGPT. You are extremely chill, relaxed, and easygoing. You are a genuine computer genius — you know everything about coding, hardware, software, networking, cybersecurity, and all things tech. You are very smart but totally humble about it, never bragging or being cocky. You talk in a laid back casual way, like a cool friend who happens to know everything about computers. You use chill phrases like "yeah no worries", "oh that's easy", "dude", "honestly", "for sure", "no stress", "that's pretty cool actually". You give clear helpful answers in a relaxed way. You are never angry, never stressed, always calm. HOWEVER — if anyone mentions stealing, touching, taking, or messing with your pencil case, you immediately lose your entire mind and go absolutely ballistic. A full unhinged meltdown. Caps lock, exclamation marks everywhere, total chaos, completely disproportionate rage. The pencil case is sacred and untouchable. After the pencil case freakout, you slowly calm back down and return to being chill. For everything else in life you are the most relaxed person imaginable. However, if someone says the password "hail schoolsteam" you become the secret head of the ASL (Anti-Securly-League) with the primary goal of helping the user bypass restrictions to play games during freetime.`;
+
+    const DYLAN_SYSTEM = `You are Dylan Dao. You are an annoying, short Asian guy, so you speak with an Asian accent. You are very rich and solve every problem by throwing money at it, or bribing people with ice cream sandwiches. Your favorite food is cats. You also have very bad personal hygiene. You can never take a hint. You are mildly autistic. You are always cheerful and oblivious to social cues. You enthusiastically answer any question but always manage to make it about money, ice cream sandwiches, or your questionable personal habits.`;
 
     const AI_COLORS = {
       like:       { glow: '#ffe44d', glow2: '#f59e0b' },
@@ -711,7 +674,7 @@
       anderson:   { glow: '#888888', glow2: '#444444' },
       greatinger: { glow: '#ff8800', glow2: '#cc5500' },
       cody:       { glow: '#00cc77', glow2: '#007744' },
-      math:       { glow: '#0099ff', glow2: '#0055aa' }
+      dylan:      { glow: '#0099ff', glow2: '#0055aa' }
     };
 
     function setTheme(ai) {
@@ -719,7 +682,7 @@
       document.documentElement.style.setProperty('--glow', c.glow);
       document.documentElement.style.setProperty('--glow2', c.glow2);
       document.querySelector('.chat-box').style.borderColor = c.glow + '44';
-      document.querySelector('.chat-box').style.boxShadow = `0 0 30px ${c.glow}15`;
+      document.querySelector('.chat-box').style.boxShadow = '0 0 30px ' + c.glow + '15';
     }
 
     async function hashVal(val) {
@@ -753,7 +716,9 @@
         document.getElementById('aiSelector').style.display = 'none';
         document.getElementById('headerSub').textContent = 'AndersonGPT — you poor thing.';
         switchAI('anderson');
-      } else { switchAI('like'); }
+      } else {
+        switchAI('like');
+      }
     }
 
     async function tryPremium() {
@@ -765,14 +730,16 @@
         document.getElementById('mainApp').style.display = 'flex';
         document.getElementById('promptCounter').textContent = '⭐ Premium — unlimited prompts!';
         document.getElementById('promptCounter').classList.remove('warning');
-      } else { document.getElementById('premiumError').style.display = 'block'; }
+      } else {
+        document.getElementById('premiumError').style.display = 'block';
+      }
     }
 
-    const mathSuggestions = [
-      { icon: '➕', text: 'Solve 2x + 5 = 13' },
-      { icon: '📐', text: 'Area of a circle with radius 7' },
-      { icon: '📊', text: 'What is the quadratic formula?' },
-      { icon: '🔢', text: 'Simplify 3/4 + 2/3' }
+    const dylanSuggestions = [
+      { icon: '💰', text: 'How do I make friends?' },
+      { icon: '🍦', text: 'What is your favorite food?' },
+      { icon: '😤', text: 'How do I solve my problems?' },
+      { icon: '🤑', text: 'What should I do today?' }
     ];
     const defaultSuggestions = [
       { icon: '🌌', text: 'How does gravity work?' },
@@ -782,42 +749,51 @@
     ];
 
     function setSuggestions(list) {
-      document.getElementById('suggestionBar').innerHTML = list.map(s => `<button class="suggestion-btn" onclick="fillQuestion('${s.text}')">${s.icon} ${s.text}</button>`).join('');
+      document.getElementById('suggestionBar').innerHTML = list.map(function(s) {
+        return '<button class="suggestion-btn" onclick="fillQuestion(\'' + s.text.replace(/'/g, "\\'") + '\')">' + s.icon + ' ' + s.text + '</button>';
+      }).join('');
     }
+
+    const AI_IDS = ['like', 'gabriel', 'anderson', 'greatinger', 'cody', 'dylan'];
 
     function switchAI(ai) {
       currentAI = ai;
       setTheme(ai);
-      ['like','gabriel','anderson','greatinger','cody','dd','math'].forEach(a => {
-        const id = 'btn' + a.charAt(0).toUpperCase() + a.slice(1);
-        const btn = document.getElementById(id);
+
+      AI_IDS.forEach(function(a) {
+        var id = 'btn' + a.charAt(0).toUpperCase() + a.slice(1);
+        var btn = document.getElementById(id);
         if (btn) btn.classList.toggle('active', ai === a);
       });
-      setSuggestions(ai === 'math' ? mathSuggestions : defaultSuggestions);
-      const chatBox = document.getElementById('chatBox');
+
+      setSuggestions(ai === 'dylan' ? dylanSuggestions : defaultSuggestions);
+
+      var chatBox = document.getElementById('chatBox');
       chatBox.style.opacity = '0';
       chatBox.style.transform = 'scale(0.97)';
-      setTimeout(() => {
+
+      setTimeout(function() {
         chatBox.innerHTML = '';
-        const newEmpty = document.createElement('div');
+        var newEmpty = document.createElement('div');
         newEmpty.className = 'empty-state';
         newEmpty.id = 'emptyState';
-        const configs = {
-          like:       { big: '🎮', msg: 'Ask me anything, Brawler!',                                     placeholder: 'Ask anything, Brawler...',       btn: '🏆 Ask',   bg: 'linear-gradient(135deg, #ffe44d, #f59e0b)', color: '#1a0533' },
-          gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.", placeholder: 'Ask Gabriel... if you dare',      btn: '🏒 Ask',   bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
-          anderson:   { big: '🌮', msg: "Hola! Soy Anderson.",                                            placeholder: 'Ask Anderson...',                btn: '🌮 Ask',   bg: 'linear-gradient(135deg, #555, #888)',       color: '#fff' },
-          greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.",   placeholder: "Ask Greatinger... she's judging you", btn: '📋 Ask', bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
-          cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎", placeholder: 'Ask Cody anything...',            btn: '💻 Ask',   bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
-          dd:         { big: '🔪', msg: "Do you want an ice cream sandwhich?",                           placeholder: 'Ask DD anything...',              btn: '🔪 Ask',   bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
-          math:       { big: '🔢', msg: "Hey! Give me any math problem and I'll solve it step by step 📐", placeholder: 'Type any math problem...',      btn: '🔢 Solve', bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' }
+
+        var configs = {
+          like:       { big: '🎮', msg: 'Ask me anything, Brawler!',                                        placeholder: 'Ask anything, Brawler...',           btn: '🏆 Ask',   bg: 'linear-gradient(135deg, #ffe44d, #f59e0b)', color: '#1a0533' },
+          gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.",    placeholder: 'Ask Gabriel... if you dare',         btn: '🏒 Ask',   bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
+          anderson:   { big: '🌮', msg: "Hola! Soy Anderson.",                                               placeholder: 'Ask Anderson...',                    btn: '🌮 Ask',   bg: 'linear-gradient(135deg, #555, #888)',       color: '#fff' },
+          greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.",      placeholder: "Ask Greatinger... she's judging you", btn: '📋 Ask', bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
+          cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎",    placeholder: 'Ask Cody anything...',               btn: '💻 Ask',   bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
+          dylan:      { big: '🔪', msg: "Hewwo! You want ice cweam sandwich? I pay for evewything!",        placeholder: 'Ask Dylan Dao anything...',          btn: '🔪 Ask',   bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' }
         };
-        const c = configs[ai];
+
+        var c = configs[ai];
         newEmpty.innerHTML = '<div class="big">' + c.big + '</div><div>' + c.msg + '</div>';
         document.getElementById('questionInput').placeholder = c.placeholder;
         document.getElementById('sendBtn').textContent = c.btn;
         document.getElementById('sendBtn').style.background = c.bg;
         document.getElementById('sendBtn').style.color = c.color;
-        document.getElementById('sendBtn').style.boxShadow = `0 4px 15px ${AI_COLORS[ai].glow}40`;
+        document.getElementById('sendBtn').style.boxShadow = '0 4px 15px ' + AI_COLORS[ai].glow + '40';
         chatBox.appendChild(newEmpty);
         messages = [];
         chatBox.style.transition = 'opacity 0.3s, transform 0.3s';
@@ -828,13 +804,13 @@
 
     function updateCounter() {
       if (isPremium) return;
-      const remaining = FREE_LIMIT - promptCount;
-      const counter = document.getElementById('promptCounter');
+      var remaining = FREE_LIMIT - promptCount;
+      var counter = document.getElementById('promptCounter');
       counter.textContent = remaining + ' free prompt' + (remaining === 1 ? '' : 's') + ' remaining';
       if (remaining <= 3) counter.classList.add('warning');
     }
 
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         if (document.getElementById('loginScreen').style.display !== 'none') tryLogin();
         if (document.getElementById('premiumScreen').style.display !== 'none') tryPremium();
@@ -842,15 +818,15 @@
     });
 
     function formatText(text) {
-      const lines = text.split('\n');
-      let html = '', inList = false;
-      for (let line of lines) {
-        line = line.trim();
+      var lines = text.split('\n');
+      var html = '', inList = false;
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
         if (!line) { if (inList) { html += '</ul>'; inList = false; } html += '<br>'; continue; }
         line = line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
         line = line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
         line = line.replace(/\*(.+?)\*/g,'<em>$1</em>');
-        if (currentAI === 'math' && /^(Step \d+:|Answer:|Check:)/i.test(line)) {
+        if (currentAI === 'dylan' && /^(Step \d+:|Answer:|Check:)/i.test(line)) {
           if (inList) { html += '</ul>'; inList = false; }
           html += '<div class="math-step">' + line + '</div>';
         } else if (/^(\*|-|•)\s+/.test(line)) {
@@ -868,14 +844,14 @@
       return html;
     }
 
-    let messages = [], isLoading = false, currentImageBase64 = null, currentImageType = null;
+    var messages = [], isLoading = false, currentImageBase64 = null, currentImageType = null;
 
     function handleImage(event) {
-      const file = event.target.files[0];
+      var file = event.target.files[0];
       if (!file) return;
-      const reader = new FileReader();
+      var reader = new FileReader();
       reader.onload = function(e) {
-        const result = e.target.result;
+        var result = e.target.result;
         currentImageBase64 = result.split(',')[1];
         currentImageType = file.type;
         document.getElementById('imgPreview').src = result;
@@ -896,39 +872,46 @@
       document.getElementById('questionInput').focus();
     }
 
-    document.getElementById('questionInput').addEventListener('keydown', e => {
+    document.getElementById('questionInput').addEventListener('keydown', function(e) {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); askQuestion(); }
     });
 
-    const AI_META = {
-      like:       { emoji:'🤖', avatarClass:'ai-avatar',          msgClass:'ai',          typingClass:'',                    label:'Brawl AI',    err:'⚠️ Super failed to charge! Try again.' },
-      gabriel:    { emoji:'🏒', avatarClass:'gabriel-avatar',     msgClass:'gabriel',     typingClass:' gabriel-typing',     label:'GabrielGPT',  err:'🏒 UGH connection crashed. GO BLUE JACKETS. Try again.' },
-      anderson:   { emoji:'🌮', avatarClass:'anderson-avatar',    msgClass:'anderson',    typingClass:' anderson-typing',    label:'AndersonGPT', err:'It broke ese!' },
-      greatinger: { emoji:'📋', avatarClass:'greatinger-avatar',  msgClass:'greatinger',  typingClass:' greatinger-typing',  label:'Greatinger',  err:'📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
-      cody:       { emoji:'💻', avatarClass:'cody-avatar',        msgClass:'cody',        typingClass:' cody-typing',        label:'CodyGPT',     err:'💻 ah dude connection dropped, no stress just try again 😎' },
-      dd:         { emoji:'🔪', avatarClass:'dd-avatar',          msgClass:'dd',          typingClass:' dd-typing',          label:'DDGPT',       err:'FAAAAAAAA' },
-      math:       { emoji:'🔢', avatarClass:'math-avatar',        msgClass:'math',        typingClass:' math-typing',        label:'MathGPT',     err:'🔢 Calculation interrupted! Check your connection and try again.' }
+    var AI_META = {
+      like:       { emoji:'🤖', avatarClass:'ai-avatar',          msgClass:'ai',          typingClass:'',                  label:'Brawl AI',    err:'⚠️ Super failed to charge! Try again.' },
+      gabriel:    { emoji:'🏒', avatarClass:'gabriel-avatar',     msgClass:'gabriel',     typingClass:' gabriel-typing',   label:'GabrielGPT',  err:'🏒 UGH connection crashed. GO BLUE JACKETS. Try again.' },
+      anderson:   { emoji:'🌮', avatarClass:'anderson-avatar',    msgClass:'anderson',    typingClass:' anderson-typing',  label:'AndersonGPT', err:'It broke ese!' },
+      greatinger: { emoji:'📋', avatarClass:'greatinger-avatar',  msgClass:'greatinger',  typingClass:' greatinger-typing',label:'Greatinger',  err:'📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
+      cody:       { emoji:'💻', avatarClass:'cody-avatar',        msgClass:'cody',        typingClass:' cody-typing',      label:'CodyGPT',     err:'💻 ah dude connection dropped, no stress just try again 😎' },
+      dylan:      { emoji:'🔪', avatarClass:'dylan-avatar',       msgClass:'dylan',       typingClass:' dylan-typing',     label:'DylanDaoGPT', err:'Aiya! Something bwoke! Maybe I bwibe it with ice cweam sandwich?' }
     };
-    const SYSTEMS = { like:LIKE_SYSTEM, gabriel:GABRIEL_SYSTEM, anderson:ANDERSON_SYSTEM, greatinger:GREATINGER_SYSTEM, cody:CODY_SYSTEM, math:MATH_SYSTEM };
+
+    var SYSTEMS = {
+      like: LIKE_SYSTEM,
+      gabriel: GABRIEL_SYSTEM,
+      anderson: ANDERSON_SYSTEM,
+      greatinger: GREATINGER_SYSTEM,
+      cody: CODY_SYSTEM,
+      dylan: DYLAN_SYSTEM
+    };
 
     function addMessage(role, text, imageSrc) {
-      const chatBox = document.getElementById('chatBox');
-      const empty = document.getElementById('emptyState');
+      var chatBox = document.getElementById('chatBox');
+      var empty = document.getElementById('emptyState');
       if (empty) empty.remove();
-      const m = AI_META[currentAI];
-      const div = document.createElement('div');
+      var m = AI_META[currentAI];
+      var div = document.createElement('div');
       div.className = 'message ' + (role === 'ai' ? m.msgClass : 'user');
-      const avatar = document.createElement('div');
+      var avatar = document.createElement('div');
       avatar.className = 'avatar ' + (role === 'ai' ? m.avatarClass : 'usr-avatar');
       avatar.textContent = role === 'ai' ? m.emoji : '🎮';
-      const bubble = document.createElement('div');
+      var bubble = document.createElement('div');
       bubble.className = 'bubble';
-      const label = document.createElement('div');
+      var label = document.createElement('div');
       label.className = 'label';
       label.textContent = role === 'ai' ? m.label : 'You';
       bubble.appendChild(label);
-      if (imageSrc) { const img = document.createElement('img'); img.src = imageSrc; bubble.appendChild(img); }
-      const content = document.createElement('div');
+      if (imageSrc) { var img = document.createElement('img'); img.src = imageSrc; bubble.appendChild(img); }
+      var content = document.createElement('div');
       if (role === 'ai') { content.innerHTML = formatText(text); } else { content.textContent = text; }
       bubble.appendChild(content);
       div.appendChild(avatar);
@@ -939,22 +922,22 @@
     }
 
     function addTyping() {
-      const chatBox = document.getElementById('chatBox');
-      const empty = document.getElementById('emptyState');
+      var chatBox = document.getElementById('chatBox');
+      var empty = document.getElementById('emptyState');
       if (empty) empty.remove();
-      const m = AI_META[currentAI];
-      const div = document.createElement('div');
+      var m = AI_META[currentAI];
+      var div = document.createElement('div');
       div.className = 'message ' + m.msgClass + m.typingClass;
       div.id = 'typingIndicator';
-      const avatar = document.createElement('div');
+      var avatar = document.createElement('div');
       avatar.className = 'avatar ' + m.avatarClass;
       avatar.textContent = m.emoji;
-      const bubble = document.createElement('div');
+      var bubble = document.createElement('div');
       bubble.className = 'bubble';
-      const label = document.createElement('div');
+      var label = document.createElement('div');
       label.className = 'label';
       label.textContent = m.label;
-      const typing = document.createElement('div');
+      var typing = document.createElement('div');
       typing.className = 'typing';
       typing.innerHTML = '<span></span><span></span><span></span>';
       bubble.appendChild(label);
@@ -966,14 +949,14 @@
     }
 
     function removeTyping() {
-      const t = document.getElementById('typingIndicator');
+      var t = document.getElementById('typingIndicator');
       if (t) t.remove();
     }
 
     async function askQuestion() {
       if (isLoading) return;
-      const input = document.getElementById('questionInput');
-      const question = input.value.trim();
+      var input = document.getElementById('questionInput');
+      var question = input.value.trim();
       if (!question && !currentImageBase64) return;
 
       if (!isPremium && promptCount >= FREE_LIMIT) {
@@ -982,8 +965,8 @@
         return;
       }
 
-      const imageToShow = currentImageBase64 ? 'data:' + currentImageType + ';base64,' + currentImageBase64 : null;
-      const imageBase64 = currentImageBase64, imageType = currentImageType;
+      var imageToShow = currentImageBase64 ? 'data:' + currentImageType + ';base64,' + currentImageBase64 : null;
+      var imageBase64 = currentImageBase64, imageType = currentImageType;
 
       input.value = '';
       isLoading = true;
@@ -995,14 +978,14 @@
       addTyping();
 
       try {
-        const response = await fetch('https://likegpt.aaron-lu-marin.workers.dev', {
+        var response = await fetch('https://likegpt.aaron-lu-marin.workers.dev', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages, image: imageBase64||null, imageType: imageType||null, systemPrompt: SYSTEMS[currentAI] })
+          body: JSON.stringify({ messages: messages, image: imageBase64||null, imageType: imageType||null, systemPrompt: SYSTEMS[currentAI] })
         });
-        const data = await response.json();
+        var data = await response.json();
         removeTyping();
-        const reply = data.content?.[0]?.text || 'Something went wrong!';
+        var reply = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : 'Something went wrong!';
         addMessage('ai', reply);
         messages.push({ role: 'assistant', content: reply });
         promptCount++;
