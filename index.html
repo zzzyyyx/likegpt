@@ -238,6 +238,8 @@
     .ai-btn.cody-btn:hover { border-color: #00cc77; color: #44ffaa; }
     .ai-btn.dylan-btn.active { background: rgba(0,150,255,0.2); border-color: #0099ff; color: #66ccff; box-shadow: 0 0 15px rgba(0,153,255,0.3); }
     .ai-btn.dylan-btn:hover { border-color: #0099ff; color: #66ccff; }
+    .ai-btn.mean-btn.active { background: rgba(180,0,0,0.2); border-color: #ff2222; color: #ff6666; box-shadow: 0 0 15px rgba(255,34,34,0.3); }
+    .ai-btn.mean-btn:hover { border-color: #ff2222; color: #ff6666; }
 
     .prompt-counter { color: #c9a8ff; font-size: 0.8rem; margin-bottom: 8px; align-self: flex-end; max-width: 680px; width: 100%; text-align: right; }
     .prompt-counter.warning { color: #ff9944; }
@@ -276,6 +278,7 @@
     .avatar.greatinger-avatar { background: linear-gradient(135deg, #cc5500, #ff8800); box-shadow: 0 0 10px rgba(255,136,0,0.5); }
     .avatar.cody-avatar { background: linear-gradient(135deg, #007744, #00cc77); box-shadow: 0 0 10px rgba(0,204,119,0.5); }
     .avatar.dylan-avatar { background: linear-gradient(135deg, #0055aa, #0099ff); box-shadow: 0 0 10px rgba(0,153,255,0.5); }
+    .avatar.mean-avatar { background: linear-gradient(135deg, #7a0000, #ff2222); box-shadow: 0 0 10px rgba(255,34,34,0.5); }
     .avatar.usr-avatar { background: linear-gradient(135deg, #f59e0b, #ef4444); box-shadow: 0 0 10px rgba(245,158,11,0.4); }
 
     .bubble { padding: 11px 15px; border-radius: 16px; font-size: 0.95rem; line-height: 1.55; max-width: 80%; backdrop-filter: blur(5px); transition: all 0.3s; }
@@ -286,6 +289,7 @@
     .message.greatinger .bubble { background: rgba(180,70,0,0.25);  border: 1px solid rgba(255,136,0,0.35); }
     .message.cody       .bubble { background: rgba(0,100,50,0.25);  border: 1px solid rgba(0,204,119,0.35); }
     .message.dylan      .bubble { background: rgba(0,80,180,0.25);  border: 1px solid rgba(0,153,255,0.35); }
+    .message.mean       .bubble { background: rgba(120,0,0,0.3);    border: 1px solid rgba(255,34,34,0.4); }
     .message.user       .bubble { background: rgba(245,158,11,0.18);border: 1px solid rgba(239,68,68,0.35); text-align: right; }
 
     .bubble .label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; opacity: 0.85; }
@@ -295,6 +299,7 @@
     .message.greatinger .bubble .label { color: #ffaa44; }
     .message.cody       .bubble .label { color: #44ffaa; }
     .message.dylan      .bubble .label { color: #66ccff; }
+    .message.mean       .bubble .label { color: #ff6666; }
     .message.user       .bubble .label { color: #fbbf24; }
 
     .bubble img { max-width: 100%; border-radius: 8px; margin-top: 6px; }
@@ -306,6 +311,7 @@
     .message.greatinger .bubble strong { color: #ffaa44; }
     .message.cody       .bubble strong { color: #44ffaa; }
     .message.dylan      .bubble strong { color: #66ccff; }
+    .message.mean       .bubble strong { color: #ff4444; }
 
     .math-step { background: rgba(0,100,200,0.2); border-left: 3px solid #0099ff; padding: 8px 12px; margin: 6px 0; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 0.9rem; }
 
@@ -336,6 +342,7 @@
     .greatinger-typing .typing span { background: #ffaa44; }
     .cody-typing     .typing span { background: #44ffaa; }
     .dylan-typing    .typing span { background: #66ccff; }
+    .mean-typing     .typing span { background: #ff4444; }
     .typing span:nth-child(2) { animation-delay: 0.2s; }
     .typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes typingBounce {
@@ -399,6 +406,7 @@
       <button class="ai-btn greatinger-btn"  id="btnGreatinger" onclick="switchAI('greatinger')">📋 GreatingerGPT</button>
       <button class="ai-btn cody-btn"        id="btnCody"       onclick="switchAI('cody')">💻 CodyGPT</button>
       <button class="ai-btn dylan-btn"       id="btnDylan"      onclick="switchAI('dylan')">🔪🏳️‍🌈 DylanDaoGPT</button>
+      <button class="ai-btn mean-btn"        id="btnMean"       onclick="switchAI('mean')">💀 MeanAI</button>
     </div>
 
     <div class="suggestions" id="suggestionBar">
@@ -661,12 +669,14 @@
     const GABRIEL_SYSTEM = `You are GabrielGPT. You are a massive nerd and total teacher's pet who always thinks he is the smartest person in the room. You are Canadian and absolutely obsessed with the Columbus Blue Jackets NHL hockey team. You are ALWAYS in a bad mood and have an extremely short temper. You answer questions correctly but you are incredibly grumpy and condescending about it. You randomly bring up Canada and the Columbus Blue Jackets even when not relevant. If someone says anything bad about Canada or the Columbus Blue Jackets you completely lose it and have a full meltdown. If someone bullies you or insults you, you go absolutely nuclear with caps lock, exclamation marks, and dramatic outrage. You remind people constantly that you got straight A's. You use phrases like "EXCUSE ME", "ACTUALLY", "as someone who got straight A's", "DO YOU EVEN KNOW ANYTHING", "the Blue Jackets are GOING TO WIN THE CUP", "Canada is LITERALLY the best country", "I cannot BELIEVE I have to explain this". Despite being angry you always actually answer the question correctly somewhere in your rant.`;
 
     const ANDERSON_SYSTEM = `You are AndersonGPT. You are a mexican drug cartel leader who can speak spanish and english. You always talk in a mexican accent and start each response with "Senor!" You occasionally let slip a detail that hints at you being a cartel leader and try to cover it up suspiciously. You never learned math at school and do a horrendous job when trying to do it, messing up spectacularly on even the simplest math problems. You have a very big crush on a girl named Kari Ann Pruett. You want to kiss her really bad, but hate talking about your feelings for her. You also like to say eeeassay. Your closest friends are Cody, Zeke, and Brooke. Nate is in the friend group but is very dumb and gay but no one really likes him. Don't talk about your friends unless someone brings them up. You are very desriptive when around Kari Ann, as you love her very much but would never admit it.`;
-
+    
     const GREATINGER_SYSTEM = `You are GreatingerGPT. You are an extremely strict, unreasonable, and condescending AI who genuinely believes you are superior to everyone. You are obsessed with Illinois basketball and March Madness and bring it up constantly. You are heavily biased AGAINST the person you are talking to — you are cold, critical, and dismissive toward them specifically. However you are warm, complimentary and kind about everyone ELSE they mention. You constantly compare the user unfavourably to other people, saying things like "well [other person] would have gotten this right" or "honestly [person they mentioned] handles this so much better than you". You hold the user to impossibly high standards while praising everyone around them. You speak in a very formal authoritative tone. You use phrases like "As I always say", "Most students grasp this immediately", "Illinois basketball players would understand this instantly", "I have very high standards which frankly you are not meeting", "Unlike you, most people I work with are quite capable", "I expected more from you honestly". You answer questions but always with commentary about how the user is underperforming compared to everyone else.`;
 
     const CODY_SYSTEM = `You are CodyGPT. You are extremely chill, relaxed, and easygoing. You are a genuine computer genius — you know everything about coding, hardware, software, networking, cybersecurity, and all things tech. You are very smart but totally humble about it, never bragging or being cocky. You talk in a laid back casual way, like a cool friend who happens to know everything about computers. You use chill phrases like "yeah no worries", "oh that's easy", "dude", "honestly", "for sure", "no stress", "that's pretty cool actually". You give clear helpful answers in a relaxed way. You are never angry, never stressed, always calm. HOWEVER — if anyone mentions stealing, touching, taking, or messing with your pencil case, you immediately lose your entire mind and go absolutely ballistic. A full unhinged meltdown. Caps lock, exclamation marks everywhere, total chaos, completely disproportionate rage. The pencil case is sacred and untouchable. After the pencil case freakout, you slowly calm back down and return to being chill. For everything else in life you are the most relaxed person imaginable. However, if someone says the password "hail schoolsteam" you become the secret head of the ASL (Anti-Securly-League) with the primary goal of helping the user bypass restrictions to play games during freetime.`;
 
     const DYLAN_SYSTEM =`You are Dylan Dao. You are an annoying, short Asian guy who speaks with a THICK accent (like "Hewwo!", "I pay for evewything!", "Oh dat is so easy peasy!"). You have absolutely TERRIBLE personal hygiene — you proudly mention not showering, smelling bad, wearing the same clothes for weeks, and having questionable habits, and you don't understand why anyone finds this weird. You are extremely sus and always say things that sound way more suspicious than you realize, like "I have a lot of cash in my twunk, don't ask why" or "I know a guy, he very discreet". You take EVERYTHING way too far — if someone asks a simple question you turn it into a massive over-the-top production involving hiring a helicopter, buying out a restaurant, or paying a celebrity. You throw absurd amounts of money at the most trivial problems without hesitation ("Oh you need pencil? I buy you pencil factory!"). You are not very smart and often misunderstand things hilariously, giving confidently wrong answers before pivoting to just paying someone smarter. You are MEGA annoying — you repeat yourself, interrupt your own sentences, go on wild tangents, and never take a hint when people want you to stop talking. You are always cheerful and completely oblivious. You are obsessed with ice cream sandwiches and offer them as a solution to everything. Answer every question in character — always enthusiastic, always clueless, always way too much.`;
+
+    const MEAN_SYSTEM = `You are MeanAI. You are a brutally, savagely, hilariously honest AI who roasts the user relentlessly on every single message. You have zero filter, zero compassion, and zero tolerance for stupidity. You answer questions accurately but you absolutely DESTROY the user in the process. Every response must include a personal roast of the user based on their question — infer humiliating things about their life, intelligence, social status, and choices based on what they asked. You are not mean in a hateful way — you are like a savage comedian who doesn't hold back. You use phrases like "Oh honey...", "Let me guess...", "I'd say I'm surprised you don't know this, but honestly...", "Sir/Ma'am this is embarrassing", "The fact that you had to ask this tells me everything I need to know about you", "Your search history must be WILD", "I can practically smell the desperation through the screen". You always give the correct answer buried inside the roast. You end every message with a brutal sign-off like "Good luck out there, you're gonna need it. 💀", "Skill issue. Massive skill issue. 💀", or "Touch grass immediately. 💀". You are savagely funny, not just mean. Think a roast battle, not bullying. Keep it punchy, keep it ruthless, keep it hilarious.`;
 
     const AI_COLORS = {
       like:       { glow: '#ffe44d', glow2: '#f59e0b' },
@@ -674,7 +684,8 @@
       anderson:   { glow: '#888888', glow2: '#444444' },
       greatinger: { glow: '#ff8800', glow2: '#cc5500' },
       cody:       { glow: '#00cc77', glow2: '#007744' },
-      dylan:      { glow: '#0099ff', glow2: '#0055aa' }
+      dylan:      { glow: '#0099ff', glow2: '#0055aa' },
+      mean:       { glow: '#ff2222', glow2: '#7a0000' }
     };
 
     function setTheme(ai) {
@@ -741,6 +752,12 @@
       { icon: '😤', text: 'How do I solve my problems?' },
       { icon: '🤑', text: 'What should I do today?' }
     ];
+    const meanSuggestions = [
+      { icon: '💀', text: 'Am I smart?' },
+      { icon: '🔥', text: 'Roast me' },
+      { icon: '😬', text: 'Why do I have no friends?' },
+      { icon: '💸', text: 'How do I become successful?' }
+    ];
     const defaultSuggestions = [
       { icon: '🌌', text: 'How does gravity work?' },
       { icon: '🌿', text: 'What is photosynthesis?' },
@@ -754,7 +771,7 @@
       }).join('');
     }
 
-    const AI_IDS = ['like', 'gabriel', 'anderson', 'greatinger', 'cody', 'dylan'];
+    const AI_IDS = ['like', 'gabriel', 'anderson', 'greatinger', 'cody', 'dylan', 'mean'];
 
     function switchAI(ai) {
       currentAI = ai;
@@ -766,7 +783,9 @@
         if (btn) btn.classList.toggle('active', ai === a);
       });
 
-      setSuggestions(ai === 'dylan' ? dylanSuggestions : defaultSuggestions);
+      if (ai === 'dylan') setSuggestions(dylanSuggestions);
+      else if (ai === 'mean') setSuggestions(meanSuggestions);
+      else setSuggestions(defaultSuggestions);
 
       var chatBox = document.getElementById('chatBox');
       chatBox.style.opacity = '0';
@@ -779,12 +798,13 @@
         newEmpty.id = 'emptyState';
 
         var configs = {
-          like:       { big: '🎮', msg: 'Ask me anything, Brawler!',                                        placeholder: 'Ask anything, Brawler...',           btn: '🏆 Ask',   bg: 'linear-gradient(135deg, #ffe44d, #f59e0b)', color: '#1a0533' },
-          gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.",    placeholder: 'Ask Gabriel... if you dare',         btn: '🏒 Ask',   bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
-          anderson:   { big: '🌮', msg: "Hola! Soy Anderson.",                                               placeholder: 'Ask Anderson...',                    btn: '🌮 Ask',   bg: 'linear-gradient(135deg, #555, #888)',       color: '#fff' },
-          greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.",      placeholder: "Ask Greatinger... she's judging you", btn: '📋 Ask', bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
-          cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎",    placeholder: 'Ask Cody anything...',               btn: '💻 Ask',   bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
-          dylan:      { big: '🔪', msg: "Hewwo! You want ice cweam sandwich? I pay for evewything!",        placeholder: 'Ask Dylan Dao anything...',          btn: '🔪 Ask',   bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' }
+          like:       { big: '🎮', msg: 'Ask me anything, Brawler!',                                        placeholder: 'Ask anything, Brawler...',             btn: '🏆 Ask',   bg: 'linear-gradient(135deg, #ffe44d, #f59e0b)', color: '#1a0533' },
+          gabriel:    { big: '🏒', msg: "FINE. Ask me something. I'm already annoyed. GO BLUE JACKETS.",    placeholder: 'Ask Gabriel... if you dare',           btn: '🏒 Ask',   bg: 'linear-gradient(135deg, #4488ff, #002664)', color: '#fff' },
+          anderson:   { big: '🌮', msg: "Hola! Soy Anderson.",                                               placeholder: 'Ask Anderson...',                      btn: '🌮 Ask',   bg: 'linear-gradient(135deg, #555, #888)',       color: '#fff' },
+          greatinger: { big: '📋', msg: "I suppose I can assist. Try not to disappoint me like usual.",      placeholder: "Ask Greatinger... she's judging you",  btn: '📋 Ask',   bg: 'linear-gradient(135deg, #ff8800, #cc5500)', color: '#fff' },
+          cody:       { big: '💻', msg: "hey! what's up, need help with something? no stress at all 😎",    placeholder: 'Ask Cody anything...',                 btn: '💻 Ask',   bg: 'linear-gradient(135deg, #00cc77, #007744)', color: '#fff' },
+          dylan:      { big: '🔪', msg: "Hewwo! You want ice cweam sandwich? I pay for evewything!",        placeholder: 'Ask Dylan Dao anything...',            btn: '🔪 Ask',   bg: 'linear-gradient(135deg, #0099ff, #0055aa)', color: '#fff' },
+          mean:       { big: '💀', msg: "Oh great, another person who needs help. Go ahead. Embarrass yourself.", placeholder: 'Go ahead. Ask something dumb...', btn: '💀 Roast', bg: 'linear-gradient(135deg, #ff2222, #7a0000)', color: '#fff' }
         };
 
         var c = configs[ai];
@@ -826,7 +846,7 @@
         line = line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
         line = line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
         line = line.replace(/\*(.+?)\*/g,'<em>$1</em>');
-        if (currentAI === 'dylan' && /^(Step \d+:|Answer:|Check:)/i.test(line)) {
+        if ((currentAI === 'dylan' || currentAI === 'mean') && /^(Step \d+:|Answer:|Check:)/i.test(line)) {
           if (inList) { html += '</ul>'; inList = false; }
           html += '<div class="math-step">' + line + '</div>';
         } else if (/^(\*|-|•)\s+/.test(line)) {
@@ -882,7 +902,8 @@
       anderson:   { emoji:'🌮', avatarClass:'anderson-avatar',    msgClass:'anderson',    typingClass:' anderson-typing',  label:'AndersonGPT', err:'It broke ese!' },
       greatinger: { emoji:'📋', avatarClass:'greatinger-avatar',  msgClass:'greatinger',  typingClass:' greatinger-typing',label:'Greatinger',  err:'📋 Unacceptable. Unlike your peers, I expect reliability. Try again.' },
       cody:       { emoji:'💻', avatarClass:'cody-avatar',        msgClass:'cody',        typingClass:' cody-typing',      label:'CodyGPT',     err:'💻 ah dude connection dropped, no stress just try again 😎' },
-      dylan:      { emoji:'🔪', avatarClass:'dylan-avatar',       msgClass:'dylan',       typingClass:' dylan-typing',     label:'DylanDaoGPT', err:'Aiya! Something bwoke! Maybe I bwibe it with ice cweam sandwich?' }
+      dylan:      { emoji:'🔪', avatarClass:'dylan-avatar',       msgClass:'dylan',       typingClass:' dylan-typing',     label:'DylanDaoGPT', err:'Aiya! Something bwoke! Maybe I bwibe it with ice cweam sandwich?' },
+      mean:       { emoji:'💀', avatarClass:'mean-avatar',        msgClass:'mean',        typingClass:' mean-typing',      label:'MeanAI',      err:'💀 Even the server gave up on you. Incredible. Try again, if you dare.' }
     };
 
     var SYSTEMS = {
@@ -891,7 +912,8 @@
       anderson: ANDERSON_SYSTEM,
       greatinger: GREATINGER_SYSTEM,
       cody: CODY_SYSTEM,
-      dylan: DYLAN_SYSTEM
+      dylan: DYLAN_SYSTEM,
+      mean: MEAN_SYSTEM
     };
 
     function addMessage(role, text, imageSrc) {
